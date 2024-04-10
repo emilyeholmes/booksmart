@@ -1,0 +1,16 @@
+{
+  "name": "booksmart",
+  "version": "1.0.0",
+  "description": "Hello friend!",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "CS 160 Amateur Aces",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+
