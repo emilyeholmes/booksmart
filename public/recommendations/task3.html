@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Page with Search Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+
+<body>
+    <header>
+        <!-- <h1>My Basic Page with Search Bar</h1> -->
+        <!-- <form action="#" method="GET">
+            <input type="text" name="search" placeholder="Search...">
+            <input type="submit" value="Search">
+        </form> -->
+        <h1>BookSmart!</h1>
+    </header>
+
+
+    <main>
+        <h1>Recommendations</h1>
+
+        <h4 id="result"></h4>
+        <img id="book-img" src="" alt="cover image of recommended book">
+        <p id="desc"></p>
+        <button id="get-rec">Get New Recommendation!</button>
+
+
+
+    </main>
+
+    <script>
+        let alreadyRecommended = [];
+        let descriptions = {
+            'Anansi Boys': "Fat Charlie Nancy's normal life ended the moment his father dropped dead on a Florida karaoke stage. Charlie didn't know his dad was a god. And he never knew he had a brother. Now brother Spider's on his doorstep—about to make Fat Charlie's life more interesting . . . and a lot more dangerous.", 'One Hundred Years of Solitude': "One of the 20th century's enduring works, One Hundred Years of Solitude is a widely beloved and acclaimed novel known throughout the world, and the ultimate achievement in a Nobel Prize–winning career. The novel tells the story of the rise and fall of the mythical town of Macondo through the history of the Buendía family. It is a rich and brilliant chronicle of life and death, and the tragicomedy of humankind. In the noble, ridiculous, beautiful, and tawdry story of the Buendía family, one sees all of humanity, just as in the history, myths, growth, and decay of Macondo, one sees all of Latin America. Love and lust, war and revolution, riches and poverty, youth and senility -- the variety of life, the endlessness of death, the search for peace and truth -- these universal themes dominate the novel. Whether he is describing an affair of passion or the voracity of capitalism and the corruption of government, Gabriel García Márquez always writes with the simplicity, ease, and purity that are the mark of a master. Alternately reverential and comical, One Hundred Years of Solitude weaves the political, personal, and spiritual to bring a new consciousness to storytelling. Translated into dozens of languages, this stunning work is no less than an accounting of the history of the human race.", 'The Andromeda Strain': 'A team of scientists struggles to define and contain a deadly bacteria brought back from outer space by a satellite.', 'Congo': 'Armed with the latest gifts of advanced technology, a California scientist, a ruthless corporation agent, and a mercenary hunter face the dangers of the Congo jungle in search of the diamonds of the lost city of Zinj. Reprint.', 'Eleven Minutes': 'Eleven Minutes is the story of Maria, a young girl from a Brazilian village, whose first innocent brushes with love leave her heartbroken. At a tender age, she becomes convinced that she will never find true love, instead believing that "love is a terrible thing that will make you suffer. . . ." A chance meeting in Rio takes her to Geneva, where she dreams of finding fame and fortune. Maria\'s despairing view of love is put to the test when she meets a handsome young painter. In this odyssey of self-discovery, Maria has to choose between pursuing a path of darkness -- sexual pleasure for its own sake -- or risking everything to find her own "inner light" and the possibility of sacred sex, sex in the context of love. This P.S. edition features an extra 16 pages of insights into the book, including author interviews, recommended reading, and more.', 'Brave New World and Brave New World Revisited': "The astonishing novel Brave New World, originally published in 1932, presents Aldous Huxley's vision of the future -- of a world utterly transformed. Through the most efficient scientific and psychological engineering, people are genetically designed to be passive and therefore consistently useful to the ruling class. This powerful work of speculative fiction sheds a blazing critical light on the present and is considered to be Huxley's most enduring masterpiece. Following Brave New World is the nonfiction work Brave New World Revisited, first published in 1958. It is a fascinating work in which Huxley uses his tremendous knowledge of human relations to compare the modern-day world with the prophetic fantasy envisioned in Brave New World, including threats to humanity, such as overpopulation, propaganda, and chemical persuasion.", 'Good Omens': "According to The Nice and Accurate Prophecies of Agnes Nutter, Witch (the world's only completely accurate book of prophecies, written in 1655, before she exploded), the world will end on a Saturday. Next Saturday, in fact. Just before dinner. So the armies of Good and Evil are amassing, Atlantis is rising, frogs are falling, tempers are flaring. Everything appears to be going according to Divine Plan. Except a somewhat fussy angel and a fast-living demon—both of whom have lived amongst Earth's mortals since The Beginning and have grown rather fond of the lifestyle—are not actually looking forward to the coming Rapture. And someone seems to have misplaced the Antichrist . . .", 'Their Eyes Were Watching God': "One of the most important works of twentieth-century American literature, Zora Neale Hurston's beloved 1937 classic, Their Eyes Were Watching God, is an enduring Southern love story sparkling with wit, beauty, and heartfelt wisdom. Told in the captivating voice of a woman who refuses to live in sorrow, bitterness, fear, or foolish romantic dreams, it is the story of fair-skinned, fiercely independent Janie Crawford, and her evolving selfhood through three marriages and a life marked by poverty, trials, and purpose. A true literary wonder, Hurston's masterwork remains as relevant and affecting today as when it was first published -- perhaps the most widely read and highly regarded novel in the entire canon of African American literature.", 'A Tree Grows in Brooklyn': "The beloved American classic about a young girl's coming-of-age at the turn of the century, Betty Smith's A Tree Grows in Brooklyn is a poignant and moving tale filled with compassion and cruelty, laughter and heartache, crowded with life and people and incident. The story of young, sensitive, and idealistic Francie Nolan and her bittersweet formative years in the slums of Williamsburg has enchanted and inspired millions of readers for more than sixty years. By turns overwhelming, sublime, heartbreaking, and uplifting, the daily experiences of the unforgettable Nolans are raw with honesty and tenderly threaded with family connectedness -- in a work of literary art that brilliantly captures a unique time and place as well as incredibly rich moments of universal experience.", 'The Alchemist': '"My heart is afraid that it will have to suffer," the boy told the alchemist one night as they looked up at the moonless sky." Tell your heart that the fear of suffering is worse than the suffering itself. And that no heart has ever suffered when it goes in search of its dreams." Every few decades a book is published that changes the lives of its readers forever. The Alchemist is such a book. With over a million and a half copies sold around the world, The Alchemist has already established itself as a modern classic, universally admired. Paulo Coelho\'s charming fable, now available in English for the first time, will enchant and inspire an even wider audience of readers for generations to come. The Alchemist is the magical story of Santiago, an Andalusian shepherd boy who yearns to travel in search of a worldly treasure as extravagant as any ever found. From his home in Spain he journeys to the markets of Tangiers and across the Egyptian desert to a fateful encounter with the alchemist. The story of the treasures Santiago finds along the way teaches us, as only a few stories have done, about the essential wisdom of listening to our hearts, learning to read the omens strewn along life\'s path, and, above all, following our dreams.', 'Veronika Decides to Die': "Twenty-four-year-old Veronika seems to have everything -- youth and beauty, boyfriends and a loving family, a fulfilling job. But something is missing in her life. So, one cold November morning, she takes a handful of sleeping pills expecting never to wake up. But she does -- at a mental hospital where she is told that she has only days to live. Inspired by events in Coelho's own life, Veronika Decides to Die questions the meaning of madness and celebrates individuals who do not fit into patterns society considers to be normal. Bold and illuminating, it is a dazzling portrait of a young woman at the crossroads of despair and liberation, and a poetic, exuberant appreciation of each day as a renewed opportunity.", 'Coraline': "In Coraline's family's new flat there's a locked door. On the other side is a brick wall—until Coraline unlocks the door . . . and finds a passage to another flat in another house just like her own. Only different. The food is better there. Books have pictures that writhe and crawl and shimmer. And there's another mother and father there who want Coraline to be their little girl. They want to change her and keep her with them. . . . Forever. Coraline is an extraordinary fairy tale/nightmare from the uniquely skewed imagination of #1 New York Times bestselling author Neil Gaiman.", 'Stardust': 'Young Tristran Thorn will do anything to win the cold heart of beautiful Victoria—even fetch her the star they watch fall from the night sky. But to do so, he must enter the unexplored lands on the other side of the ancient wall that gives their tiny village its name. Beyond that old stone wall, Tristran learns, lies Faerie—where nothing, not even a fallen star, is what he imagined. From #1 New York Times bestselling author Neil Gaiman comes a remarkable quest into the dark and miraculous—in pursuit of love and the utterly impossible.', 'The Pact': "Until the phone calls came at three o'clock on a November morning, the Golds and their neighbors, the Hartes, had been inseparable. It was no surprise to anyone when their teenage children, Chris and Emily, began showing signs that their relationship was moving beyond that of lifelong friends. But now seventeen-year-old Emily is dead—shot with a gun her beloved and devoted Chris pilfered from his father's cabinet as part of an apparent suicide pact—leaving two devastated families stranded in the dark and dense predawn, desperate for answers about an unthinkable act and the children they never really knew. From New York Times bestselling author Jodi Picoult—one of the most powerful writers in contemporary fiction—comes a riveting, timely, heartbreaking, and terrifying novel of families in anguish and friendships ripped apart by inconceivable violence.", 'The Chronicles of Narnia (adult)': "Journeys to the end of the world, fantastic creatures, and epic battles between good and evil -- what more could any reader ask for in one book? The book that has it all is The Lion, the Witch and the Wardrobe, written in 1949 by Clive Staples Lewis. But Lewis did not stop there. Six more books followed, and together they became known as The Chronicles of Narnia. For the past fifty years, The Chronicles of Narnia have transcended the fantasy genre to become part of the canon of classic literature. Each of the seven books is a masterpiece, drawing the reader into a land where magic meets reality, and the result is a fictional world whose scope has fascinated generations. This edition presents all seven books -- unabridged -- in one impressive volume. The books are presented here according to Lewis' preferred order, each chapter graced with an illustration by the original artist, Pauline Baynes. Deceptively simple and direct, The Chronicles of Narnia continue to captivate fans with adventures, characters, and truths that speak to readers of all ages, even fifty years after they were first published.", 'The Trial': 'Written in 1914, The Trial is the terrifying tale of Josef K., a respectable bank officer who is suddenly arrested and must defend himself against a charge about which he can get no information. Kafka’s nightmare has resonated with chilling truth for generations of readers.', 'Frankenstein, Or, The Modern Prometheus': 'Edited by Maurice Hindle.', 'Emma': "New chronology and further reading; Tony Tanner's original introduction reinstated Edited with an introduction and notes by Flora Stafford.", 'A Tale of Two Cities': 'Edited with an Introduction and Notes by Richard Maxwell.', 'Mansfield Park': 'The private and social worlds of three families are revealed through the experiences of the heroine, Fanny Price.'
+        }
+        let images = {
+            'Anansi Boys': 'http://books.google.com/books/content?id=VagoPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'One Hundred Years of Solitude': 'http://books.google.com/books/content?id=pgPWOaOctq8C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Andromeda Strain': 'http://books.google.com/books/content?id=k6LVNLM_D-8C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Congo': 'http://books.google.com/books/content?id=Gp-fLBIrNY4C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Eleven Minutes': 'http://books.google.com/books/content?id=Qp0EZu3GCYsC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Brave New World and Brave New World Revisited': 'http://books.google.com/books/content?id=3h9eNAyQWzAC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Good Omens': 'http://books.google.com/books/content?id=7erEbfDOcgkC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Their Eyes Were Watching God': 'http://books.google.com/books/content?id=Gz-d8SIFAcgC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'A Tree Grows in Brooklyn': 'http://books.google.com/books/content?id=Y-FZ9gRwMTYC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Alchemist': 'http://books.google.com/books/content?id=pTr44Sx6oWQC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Veronika Decides to Die': 'http://books.google.com/books/content?id=dlgK3OfbiIEC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Coraline': 'http://books.google.com/books/content?id=pXlAY0XnrQUC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Stardust': 'http://books.google.com/books/content?id=NQ_cSYevzAEC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Pact': 'http://books.google.com/books/content?id=VDCvqF9o8RoC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Chronicles of Narnia (adult)': 'http://books.google.com/books/content?id=3VGkK_F9thYC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Trial': 'http://books.google.com/books/content?id=pLxfPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Frankenstein, Or, The Modern Prometheus': 'http://books.google.com/books/content?id=6W24a29p9GQC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Emma': 'http://books.google.com/books/content?id=6-ndr-0EMycC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'A Tale of Two Cities': 'http://books.google.com/books/content?id=-SalMNeuN5sC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Mansfield Park': 'http://books.google.com/books/content?id=krnu-3b88JgC&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+        }
+        // import fetch from 'node-fetch'; // for node.js
+
+        async function getRecommendation() {
+
+            let response;
+
+            if (alreadyRecommended == []) {
+                response = await fetch(
+                    'https://noggin.rea.gent/empirical-damselfly-2712',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: 'Bearer rg_v1_fgn8qnnzx4gxq0a2qcj89a8ggrltaqrfcbc4_ngk',
+                        },
+                        body: JSON.stringify({
+                            // fill variables here.
+                            "data": "25 year old female. Interested in history, adventures, and romance.",
+                            "alreadysuggested": "NONE",
+                            "otherbooks": "The Hunger Games",
+                        }),
+                    }
+                ).then(response => response.text());
+
+            } else {
+                response = await fetch(
+                    'https://noggin.rea.gent/empirical-damselfly-2712',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: 'Bearer rg_v1_fgn8qnnzx4gxq0a2qcj89a8ggrltaqrfcbc4_ngk',
+                        },
+                        body: JSON.stringify({
+                            // fill variables here.
+                            "data": "25 year old female. Interested in history, adventures, and romance. ",
+                            "alreadysuggested": alreadyRecommended,
+                            "otherbooks": "The Hunger Games",
+                        }),
+                    }
+                ).then(response => response.text());
+            }
+
+            let [image, description] = getImageAndDescription(response);
+
+            console.log(response);
+
+            var result = document.getElementById("result");
+            result.innerText = response;
+            alreadyRecommended.push(response);
+
+            document.getElementById("desc").innerText = description;
+            document.getElementById("book-img").setAttribute('src', image);
+
+
+        }
+
+        function getImageAndDescription(response) {
+            let image = images[response];
+            let description = descriptions[response];
+
+            return [image, description];
+        }
+
+
+        let button = document.getElementById("get-rec");
+        button.addEventListener("click", getRecommendation);
+
+        getRecommendation();
+
+    </script>
+
+
+
+
+
+</body>
+
+
+
+
+</html>
