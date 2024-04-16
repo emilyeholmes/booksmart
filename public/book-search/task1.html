@@ -78,9 +78,8 @@
             option1.innerHTML = "Add to Shelf";
             shelfAdd.appendChild(option1);
 
-            //TODO: popup or lead to new page to allow user to create and add
             const option2 = document.createElement("option");
-            option2.value = "Create New Shelf";
+            option2.value = "CreateShelf";
             option2.innerHTML = "Create New Shelf";
             shelfAdd.appendChild(option2);
 
@@ -88,35 +87,58 @@
             const option3 = document.createElement("option");
             option3.value = "Romance";
             option3.innerHTML = "Romance";
-            //shelfAdd.appendChild(document.createTextNode("Add to Shelf"));
             shelfAdd.appendChild(option3);
 
             const option4 = document.createElement("option");
             option4.value = "Fantasy";
             option4.innerHTML = "Fantasy";
-            //shelfAdd.appendChild(document.createTextNode("Add to Shelf"));
             shelfAdd.appendChild(option4);
 
             const option5 = document.createElement("option");
-            option5.value = "Red Flags";
-            option5.innerHTML = "Red Flags";
-            //shelfAdd.appendChild(document.createTextNode("Add to Shelf"));
+            option5.value = "Cry Worthy";
+            option5.innerHTML = "Cry Worthy";
             shelfAdd.appendChild(option5);
 
             shelfSection.appendChild(shelfAdd);
 
-            shelfAdd.addEventListener("click", checkShelf);
+            shelfAdd.addEventListener("change", () => {
+             
+
+                for (let i = 2; i < shelfAdd.length; i++) {
+                    if (shelfAdd.value == shelfAdd[i].value) {
+                        alert("Successfully added to " + shelfAdd.value + " shelf!");
+                    }
+                }
+
+
+                if (shelfAdd.value == "CreateShelf") {
+                    const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
+                    if (newShelfName != null || newShelfName != "") {
+                        alert("Successfully created " + newShelfName + " shelf!");
+                    }
+                    const option6 = document.createElement("option");
+                    option6.value = newShelfName;
+                    option6.innerHTML = newShelfName;
+                    shelfAdd.appendChild(option6);
+                }
+
+            });
 
         }
 
-        function checkShelf() {
-            //TODO
-        }
 
+        function removeExistingButtons() {
+            const shelfSection = document.getElementById("shelves");
+            while (shelfSection.firstChild) {
+                shelfSection.removeChild(shelfSection.lastChild);
+            }
+        }
+        
 
         let button = document.getElementById("book-search");
         button.addEventListener("click", () => {
             getBookInfo();
+            removeExistingButtons();
             addShelfButtons();
         
         });
