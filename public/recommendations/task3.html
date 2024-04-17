@@ -50,9 +50,11 @@
         <h1>Recommendations</h1>
 
         <h4 id="result"></h4>
-        <img id="book-img" src="" alt="cover image of recommended book">
-        <p id="desc"></p>
-        <button id="get-rec">Get New Recommendation!</button>
+        <h5 id="author">
+            </h6>
+            <img id="book-img" src="" alt="cover image of recommended book">
+            <p id="desc"></p>
+            <button id="get-rec">Get New Recommendation!</button>
 
 
 
@@ -66,7 +68,11 @@
         let images = {
             'Anansi Boys': 'http://books.google.com/books/content?id=VagoPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'One Hundred Years of Solitude': 'http://books.google.com/books/content?id=pgPWOaOctq8C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Andromeda Strain': 'http://books.google.com/books/content?id=k6LVNLM_D-8C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Congo': 'http://books.google.com/books/content?id=Gp-fLBIrNY4C&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Eleven Minutes': 'http://books.google.com/books/content?id=Qp0EZu3GCYsC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Brave New World and Brave New World Revisited': 'http://books.google.com/books/content?id=3h9eNAyQWzAC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Good Omens': 'http://books.google.com/books/content?id=7erEbfDOcgkC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Their Eyes Were Watching God': 'http://books.google.com/books/content?id=Gz-d8SIFAcgC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'A Tree Grows in Brooklyn': 'http://books.google.com/books/content?id=Y-FZ9gRwMTYC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Alchemist': 'http://books.google.com/books/content?id=pTr44Sx6oWQC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Veronika Decides to Die': 'http://books.google.com/books/content?id=dlgK3OfbiIEC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Coraline': 'http://books.google.com/books/content?id=pXlAY0XnrQUC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Stardust': 'http://books.google.com/books/content?id=NQ_cSYevzAEC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Pact': 'http://books.google.com/books/content?id=VDCvqF9o8RoC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Chronicles of Narnia (adult)': 'http://books.google.com/books/content?id=3VGkK_F9thYC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The Trial': 'http://books.google.com/books/content?id=pLxfPwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Frankenstein, Or, The Modern Prometheus': 'http://books.google.com/books/content?id=6W24a29p9GQC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Emma': 'http://books.google.com/books/content?id=6-ndr-0EMycC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'A Tale of Two Cities': 'http://books.google.com/books/content?id=-SalMNeuN5sC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Mansfield Park': 'http://books.google.com/books/content?id=krnu-3b88JgC&printsec=frontcover&img=1&zoom=1&source=gbs_api'
         }
-        // import fetch from 'node-fetch'; // for node.js
+
+        const authors = {
+            'Anansi Boys': 'Neil Gaiman', 'One Hundred Years of Solitude': 'Gabriel Garcia Marquez', 'The Andromeda Strain': 'Michael Crichton', 'Congo': 'Michael Crichton', 'Eleven Minutes': 'Paulo Coelho', 'Brave New World and Brave New World Revisited': 'Aldous Huxley', 'Good Omens': 'Neil Gaiman;Terry Pratchett', 'Their Eyes Were Watching God': 'Zora Neale Hurston', 'A Tree Grows in Brooklyn': 'Betty Smith', 'The Alchemist': 'Paulo Coelho', 'Veronika Decides to Die': 'Paulo Coelho', 'Coraline': 'Neil Gaiman', 'Stardust': 'Neil Gaiman', 'The Pact': 'Jodi Picoult', 'The Chronicles of Narnia (adult)': 'C. S. Lewis', 'The Trial': 'Franz Kafka', 'Frankenstein, Or, The Modern Prometheus': 'Mary Wollstonecraft Shelley', 'Emma': 'Jane Austen', 'A Tale of Two Cities': 'Charles Dickens', 'Mansfield Park': 'Jane Austen'
+        }
+
 
         async function getRecommendation() {
 
@@ -109,7 +115,7 @@
                 ).then(response => response.text());
             }
 
-            let [image, description] = getImageAndDescription(response);
+            let [image, description, author] = getBookInfo(response);
 
             console.log(response);
 
@@ -119,15 +125,17 @@
 
             document.getElementById("desc").innerText = description;
             document.getElementById("book-img").setAttribute('src', image);
+            document.getElementById("author").innerText = author;
 
 
         }
 
-        function getImageAndDescription(response) {
+        function getBookInfo(response) {
             let image = images[response];
             let description = descriptions[response];
+            let author = authors[response];
 
-            return [image, description];
+            return [image, description, author];
         }
 
 
