@@ -69,12 +69,11 @@
             'Anansi Boys': 'Neil Gaiman', 'One Hundred Years of Solitude': 'Gabriel Garcia Marquez', 'The Andromeda Strain': 'Michael Crichton', 'Congo': 'Michael Crichton', 'Eleven Minutes': 'Paulo Coelho', 'Brave New World and Brave New World Revisited': 'Aldous Huxley', 'Good Omens': 'Neil Gaiman;Terry Pratchett', 'Their Eyes Were Watching God': 'Zora Neale Hurston', 'A Tree Grows in Brooklyn': 'Betty Smith', 'The Alchemist': 'Paulo Coelho', 'Veronika Decides to Die': 'Paulo Coelho', 'Coraline': 'Neil Gaiman', 'Stardust': 'Neil Gaiman', 'The Pact': 'Jodi Picoult', 'The Chronicles of Narnia (adult)': 'C. S. Lewis', 'The Trial': 'Franz Kafka', 'Frankenstein, Or, The Modern Prometheus': 'Mary Wollstonecraft Shelley', 'Emma': 'Jane Austen', 'A Tale of Two Cities': 'Charles Dickens', 'Mansfield Park': 'Jane Austen'
         }
 
-        var users = [{
-        "login": "amateur",
-        "password": "aces",
-        "shelves": "Romance, Fantasy, Cry Worthy",
-        "books": ""
-    }]
+
+        localStorage.setItem("login", "amateur");
+        localStorage.setItem("password", "aces");
+        //var shelves = ["Romance", "Fantasy", "Cry Worthy"];
+        var books = {"Romance" : [], "Fantasy" : [], "Cry Worthy" : []};
 
         function getBookInfo() {
             var name = document.getElementById("book-name").value;
@@ -124,6 +123,9 @@
                 for (let i = 2; i < shelfAdd.length; i++) {
                     if (shelfAdd.value == shelfAdd[i].value) {
                         alert("Successfully added to " + shelfAdd.value + " shelf!");
+                        //TO DO: add book to shelf storage
+                        books[shelfAdd.value].push(document.getElementById("book-name").value);
+                        localStorage.setItem("savedShelves", JSON.stringify(books));
                     }
                 }
 
@@ -131,7 +133,9 @@
                 if (shelfAdd.value == "CreateShelf") {
                     const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
                     if (newShelfName != null || newShelfName != "") {
+                        //TO DO: add shelf to storage
                         alert("Successfully created " + newShelfName + " shelf!");
+                        books[newShelfName] = [];
                     }
                     const option6 = document.createElement("option");
                     option6.value = newShelfName;
