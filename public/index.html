@@ -35,7 +35,7 @@
     <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/main.css" /> -->
 
-    <style type="text/css">
+    <style>
         .card {
             margin: 0 auto;
         }
@@ -55,20 +55,25 @@
             margin: 12px auto;
             display: block;
         }
+
+        #myCarousel{
+            width: 950px;
+            margin: auto;
+        }
     </style>
 </head>
 
-<body>
-    <nav class="navbar bg-body-tertiary fixed-top">
+<body style="font-family: Helvetica Neue">
+      <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">BookSmart</a>
-            <form class="d-flex" role="search" action="book-search/task1.html">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="book-input-1">
-                <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
+            <a class="navbar-brand" href="../index.html">BookSmart</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
@@ -77,19 +82,19 @@
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookSmart</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><a href="../index.html">BookSmart</a></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="recommendations/task3.html">Recommendations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="discussions/task2.html">Discussions</a>
+                            <a class="nav-link" href="../discussions/task2.html">Discussions</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -155,7 +160,7 @@
 
       <script>
       $('.myCarousel').carousel({
-        interval: 2000
+        interval: 1000
       })
 
        let searchButton1 = document.getElementById("book-search-1");
