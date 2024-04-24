@@ -139,6 +139,7 @@
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
 
+
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
@@ -148,13 +149,13 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="recommendations/task3.html">Recommendations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../discussions/task2.html">Discussions</a>
+                            <a class="nav-link" href="discussions/task2.html">Discussions</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -362,7 +363,7 @@
         function goBack() {
 
             if (alreadyRecommended.length > 0) {
-                let lastBook = alreadyRecommended[alreadyRecommended.length - 1];
+                let lastBook = alreadyRecommended[alreadyRecommended.length - 2];
                 document.getElementById("result").innerText = lastBook;
                 alreadyRecommended.pop();
 
@@ -462,7 +463,7 @@
                     if (shelfAdd.value == shelfAdd[i].value) {
                         alert("Successfully added to " + shelfAdd.value + " shelf!");
                         //TO DO: add book to shelf storage
-                        books[shelfAdd.value].push(document.getElementById("book-name").value);
+                        books[shelfAdd.value].push(document.getElementById("result").value);
                         localStorage.setItem("savedShelves", JSON.stringify(books));
                     }
                 }
