@@ -134,7 +134,6 @@
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
 
-
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
@@ -318,25 +317,25 @@
 
         const boldPalette = [
             '#FF0000', // Red
-            '#FF4500', // Orange Red
-            '#FFA500', // Orange
+            '#FF7F00', // Dark Orange
             '#FFD700', // Gold
-            '#FFFF00', // Yellow
-            '#ADFF2F', // Green Yellow
-            '#32CD32', // Lime Green
-            '#008000', // Green
             '#00FF00', // Lime
-            '#00FA9A', // Medium Spring Green
-            '#40E0D0', // Turquoise
-            '#4682B4', // Steel Blue
             '#1E90FF', // Dodger Blue
-            '#0000FF', // Blue
-            '#800080', // Purple
             '#8A2BE2', // Blue Violet
-            '#FF00FF', // Magenta
             '#FF69B4', // Hot Pink
-            '#FF1493', // Deep Pink
-            '#DC143C'  // Crimson
+            '#DC143C', // Crimson
+            '#FF4500', // Orange Red
+            '#FF6347', // Tomato
+            '#FF8C00', // Dark Orange
+            '#FFA07A', // Light Salmon
+            '#FFB6C1', // Light Pink
+            '#FFC0CB', // Pink
+            '#FFDAB9', // Peach Puff
+            '#FFDEAD', // Navajo White
+            '#FFE4B5', // Moccasin
+            '#FFE4C4', // Bisque
+            '#FFE4E1', // Misty Rose
+            '#FFEFD5'  // Papaya Whip
         ];
 
         function getRandomColor() {
@@ -413,6 +412,8 @@
         document.getElementById("back").addEventListener("click", goBack);
 
         getRecommendation(false);
+
+        var books = { "Romance": [], "Fantasy": [], "Cry Worthy": [] };
 
         function addShelfButtons() {
             const shelfSection = document.getElementById("shelves");
