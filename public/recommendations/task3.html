@@ -24,6 +24,11 @@
             margin-left: 1vw;
             cursor: pointer;
             text-align: center;
+            padding: 5px 10px;
+            padding-top: 6px;
+            border-radius: 20px;
+            border: 2px solid #70566D;
+            background-color: #D4CBE5;
         }
 
         #top-bar {
@@ -182,7 +187,7 @@
             <h1 style="margin-top: 1vh"><strong> My Recommendations </strong></h1>
 
             <div id="top-bar">
-                <h6 id="back" style="visibility: hidden; color:#70566D"><em>go back..</em>.</h6>
+                <h6 id="back" style="visibility: hidden"><em>go back..</em>.</h6>
                 <ul id="shelves" style="visibility: hidden;"></ul>
             </div>
 
@@ -294,7 +299,6 @@
             document.getElementById('loading-spinner').style.display = 'none';
             document.getElementById("horizontal").style.display = "flex";
             document.getElementById('desc').style.display = 'block';
-            // document.getElementById('back').style.visibility = 'visible';
             document.getElementById('shelves').style.visibility = 'visible';
 
             displayTags(response);
