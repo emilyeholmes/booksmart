@@ -463,7 +463,7 @@
                     if (shelfAdd.value == shelfAdd[i].value) {
                         alert("Successfully added to " + shelfAdd.value + " shelf!");
                         //TO DO: add book to shelf storage
-                        books[shelfAdd.value].push(document.getElementById("result").value);
+                        books[shelfAdd.value].push(document.getElementById("result").innerText);
                         localStorage.setItem("savedShelves", JSON.stringify(books));
                     }
                 }
