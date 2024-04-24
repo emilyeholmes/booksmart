@@ -21,10 +21,21 @@
         }
 
         #back {
-            align-self: flex-start;
-            margin: 1vw;
-            margin-left: 15vw;
+            margin-left: 1vw;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #top-bar {
+            display: flex;
+            width: 70vw;
+            justify-content: space-between;
+            flex-direction: row;
+            margin: 2vw;
             margin-bottom: 0vw;
+        }
+
+        #shelves {
             cursor: pointer;
         }
 
@@ -32,7 +43,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 2.5vh;
+            margin-top: 1vh;
             justify-content: center;
         }
 
@@ -46,7 +57,7 @@
             max-width: 58%;
             margin: 20px;
             text-align: center;
-            color: #42273B;
+            /* color: #42273B; */
         }
 
         #result {
@@ -109,13 +120,74 @@
         <h1>BookSmart!</h1>
     </header>
 
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">BookSmart</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
+
+
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookSmart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recommendations/task3.html">Recommendations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Discussions</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
 
     <main>
 
         <div id="page-body">
-            <h1><strong> My Recommendations </strong></h1>
+            <h1 style="margin-top: 1vh"><strong> My Recommendations </strong></h1>
 
-            <h6 id="back" style="display: none; color:#70566D"><em>go back..</em>.</h6>
+            <div id="top-bar">
+                <h6 id="back" style="visibility: hidden; color:#70566D"><em>go back..</em>.</h6>
+                <ul id="shelves" style="visibility: hidden;"></ul>
+            </div>
+
+
 
             <div id="loading-spinner" style="display: none;">
                 <div class="spinner"></div>
@@ -185,7 +257,9 @@
             document.getElementById('loading-spinner').style.display = 'block';
             document.getElementById("horizontal").style.display = "none";
             document.getElementById('desc').style.display = 'none';
-            document.getElementById('back').style.display = 'none';
+            document.getElementById('back').style.visibility = 'hidden';
+            document.getElementById('shelves').style.visibility = 'hidden';
+
 
 
             response = await fetch(
@@ -221,6 +295,8 @@
             document.getElementById('loading-spinner').style.display = 'none';
             document.getElementById("horizontal").style.display = "flex";
             document.getElementById('desc').style.display = 'block';
+            // document.getElementById('back').style.visibility = 'visible';
+            document.getElementById('shelves').style.visibility = 'visible';
 
             displayTags(response);
 
@@ -228,7 +304,7 @@
 
             //display go back button if needed
             if (notFirst == true) {
-                document.getElementById("back").style.display = "block";
+                document.getElementById("back").style.visibility = "visible";
             }
         }
 
@@ -314,6 +390,9 @@
             getRecommendation(bool);
             liked = liked == "NONE" ? [] : liked;
             liked.push(currentRec);
+            const selectElements = document.getElementsByTagName("select");
+            const selectElement = selectElements[0];
+            selectElement.selectedIndex = 0;
         });
         button = document.getElementById("dislike");
         button.addEventListener("click", () => {
@@ -324,13 +403,84 @@
             getRecommendation(bool);
             disliked = disliked == "NONE" ? [] : disliked;
             disliked.push(currentRec);
+
+            // RESET SELECT DROPDOWN
+            const selectElements = document.getElementsByTagName("select");
+            const selectElement = selectElements[0];
+            selectElement.selectedIndex = 0;
         });
 
         document.getElementById("back").addEventListener("click", goBack);
 
         getRecommendation(false);
 
+        function addShelfButtons() {
+            const shelfSection = document.getElementById("shelves");
 
+            const shelfAdd = document.createElement("select");
+            shelfAdd.className = "form-select form-select-sm";
+
+            //Default button, doesnt do anything
+            const option1 = document.createElement("option");
+            option1.value = "Add to Shelf";
+            option1.innerHTML = "<p style='font-style: italic'>Add to Shelf</p>";
+            // option1.style.fontStyle = "italic";
+            shelfAdd.appendChild(option1);
+
+            const option2 = document.createElement("option");
+            option2.value = "CreateShelf";
+            option2.innerHTML = "Create New Shelf";
+            shelfAdd.appendChild(option2);
+
+
+            const option3 = document.createElement("option");
+            option3.value = "Romance";
+            option3.innerHTML = "Romance";
+            shelfAdd.appendChild(option3);
+
+            const option4 = document.createElement("option");
+            option4.value = "Fantasy";
+            option4.innerHTML = "Fantasy";
+            shelfAdd.appendChild(option4);
+
+            const option5 = document.createElement("option");
+            option5.value = "Cry Worthy";
+            option5.innerHTML = "Cry Worthy";
+            shelfAdd.appendChild(option5);
+
+            shelfSection.appendChild(shelfAdd);
+
+            shelfAdd.addEventListener("change", () => {
+
+
+                for (let i = 2; i < shelfAdd.length; i++) {
+                    if (shelfAdd.value == shelfAdd[i].value) {
+                        alert("Successfully added to " + shelfAdd.value + " shelf!");
+                        //TO DO: add book to shelf storage
+                        books[shelfAdd.value].push(document.getElementById("book-name").value);
+                        localStorage.setItem("savedShelves", JSON.stringify(books));
+                    }
+                }
+
+
+                if (shelfAdd.value == "CreateShelf") {
+                    const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
+                    if (newShelfName != null || newShelfName != "") {
+                        //TO DO: add shelf to storage
+                        alert("Successfully created " + newShelfName + " shelf!");
+                        books[newShelfName] = [];
+                    }
+                    const option6 = document.createElement("option");
+                    option6.value = newShelfName;
+                    option6.innerHTML = newShelfName;
+                    shelfAdd.appendChild(option6);
+                }
+
+            });
+
+        }
+
+        addShelfButtons();
     </script>
 
 

@@ -46,16 +46,75 @@
 
 
     <main>
-        <label for="search">Type in Book Name!</label>
-        <input type="search" id="book-name">
-        <button id="book-search">Search</button>
-
-
+        
+            <label for="search">Type in Search Term!</label>
+            <input type="search" id="book-name">
+            <button id="book-search">Search</button> 
+        
         <p id="desc"></p>
         <p id="author"></p>
         <img id="image">
-        <p id="shelves"></p>
+        <p id="related"></p>
+        <ul id="shelves"></ul>
+        
+
     </main>
+
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">BookSmart</a>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
+
+
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookSmart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="recommendations/task3.html">Recommendations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Discussions</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <script>
         let descriptions = {
@@ -69,18 +128,71 @@
             'Anansi Boys': 'Neil Gaiman', 'One Hundred Years of Solitude': 'Gabriel Garcia Marquez', 'The Andromeda Strain': 'Michael Crichton', 'Congo': 'Michael Crichton', 'Eleven Minutes': 'Paulo Coelho', 'Brave New World and Brave New World Revisited': 'Aldous Huxley', 'Good Omens': 'Neil Gaiman;Terry Pratchett', 'Their Eyes Were Watching God': 'Zora Neale Hurston', 'A Tree Grows in Brooklyn': 'Betty Smith', 'The Alchemist': 'Paulo Coelho', 'Veronika Decides to Die': 'Paulo Coelho', 'Coraline': 'Neil Gaiman', 'Stardust': 'Neil Gaiman', 'The Pact': 'Jodi Picoult', 'The Chronicles of Narnia (adult)': 'C. S. Lewis', 'The Trial': 'Franz Kafka', 'Frankenstein, Or, The Modern Prometheus': 'Mary Wollstonecraft Shelley', 'Emma': 'Jane Austen', 'A Tale of Two Cities': 'Charles Dickens', 'Mansfield Park': 'Jane Austen'
         }
 
-        var users = [{
-        "login": "amateur",
-        "password": "aces",
-        "shelves": "Romance, Fantasy, Cry Worthy",
-        "books": ""
-    }]
+
+        localStorage.setItem("login", "amateur");
+        localStorage.setItem("password", "aces");
+        //var shelves = ["Romance", "Fantasy", "Cry Worthy"];
+        var books = {"Romance" : [], "Fantasy" : [], "Cry Worthy" : []};
 
         function getBookInfo() {
             var name = document.getElementById("book-name").value;
-            document.getElementById("desc").innerHTML = descriptions[name];
-            document.getElementById("image").src = images[name];
-            document.getElementById("author").innerHTML = authors[name];
+            var title = "Default Title";
+            const possibleTitles = [];
+            document.getElementById("desc").innerHTML = "";
+            document.getElementById("image").src = "";
+            document.getElementById("author").innerHTML = "";
+
+            //Compare this name input and lowercase it 
+            //Compare the lowercase name with the lowercase title from the dictionaries
+            //If a partial match, add the title to a list
+            //If a complete match, output the correct information like before.
+            //Also checks the author and description for possible matches
+            const searchList = document.getElementById("related"); 
+            searchList.innerHTML = "";
+            var li = document.createElement("li");
+            
+
+            for (const tempTitle in authors) {
+                if (name.toLowerCase() == tempTitle.toLowerCase()) {
+                    title = tempTitle;
+                    break;
+                }
+                else if (tempTitle.toLowerCase().includes(name.toLowerCase())) {
+                    possibleTitles.push(tempTitle);
+                }
+                // else if (authors[tempTitle].toLowerCase().includes(name.toLowerCase())) {
+                //     possibleTitles.push(tempTitle);
+                // }
+                // else if (descriptions[tempTitle].toLowerCase().includes(name.toLowerCase())) {
+                //     possibleTitles.push(tempTitle);
+                // }
+               
+                if (tempTitle.toLowerCase().includes(name.toLowerCase())) {
+                    var bookButton = document.createElement("button");
+                    bookButton.textContent = tempTitle;
+                    li.appendChild(bookButton);
+                    //add event handler
+                    bookButton.addEventListener("click", () => {
+                        displayInfo(tempTitle);
+                    });
+                    searchList.appendChild(bookButton);
+                }
+                
+            }
+
+
+            if (title != "Default Title") {
+                displayInfo(title);
+            }
+            
+        }
+
+        function displayInfo(title){
+            const searchList = document.getElementById("related"); 
+            searchList.innerHTML = "";
+            document.getElementById("desc").innerHTML = descriptions[title];
+            document.getElementById("image").src = images[title];
+            document.getElementById("author").innerHTML = authors[title];
         }
 
         function addShelfButtons() {
@@ -124,6 +236,9 @@
                 for (let i = 2; i < shelfAdd.length; i++) {
                     if (shelfAdd.value == shelfAdd[i].value) {
                         alert("Successfully added to " + shelfAdd.value + " shelf!");
+                        //TO DO: add book to shelf storage
+                        books[shelfAdd.value].push(document.getElementById("book-name").value);
+                        localStorage.setItem("savedShelves", JSON.stringify(books));
                     }
                 }
 
@@ -131,7 +246,9 @@
                 if (shelfAdd.value == "CreateShelf") {
                     const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
                     if (newShelfName != null || newShelfName != "") {
+                        //TO DO: add shelf to storage
                         alert("Successfully created " + newShelfName + " shelf!");
+                        books[newShelfName] = [];
                     }
                     const option6 = document.createElement("option");
                     option6.value = newShelfName;
@@ -150,6 +267,8 @@
                 shelfSection.removeChild(shelfSection.lastChild);
             }
         }
+        
+
 
 
         let button = document.getElementById("book-search");
@@ -159,7 +278,6 @@
             addShelfButtons();
 
         });
-
 
     </script>
 
