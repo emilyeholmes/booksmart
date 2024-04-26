@@ -68,9 +68,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="../index.html">BookSmart</a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" role="search" action="../book-search/task1.html">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="book-input-1">
+                <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
             </form>
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
@@ -137,7 +137,6 @@
 
         function getBookInfo(name) {
             var title = "Default Title";
-            const possibleTitles = [];
             
             document.getElementById("book-title").innerHTML = "";
             document.getElementById("desc").innerHTML = "";
@@ -153,23 +152,14 @@
             searchList.innerHTML = "";
             var li = document.createElement("li");
             
-
             for (const tempTitle in authors) {
                 if (name.toLowerCase() == tempTitle.toLowerCase()) {
                     title = tempTitle;
                     break;
                 }
-                else if (tempTitle.toLowerCase().includes(name.toLowerCase())) {
-                    possibleTitles.push(tempTitle);
-                }
-                else if (authors[tempTitle].toLowerCase().includes(name.toLowerCase())) {
-                    possibleTitles.push(tempTitle);
-                }
-                // else if (descriptions[tempTitle].toLowerCase().includes(name.toLowerCase())) {
-                //     possibleTitles.push(tempTitle);
-                // }
-               
-                if (tempTitle.toLowerCase().includes(name.toLowerCase())) {
+                else if (tempTitle.toLowerCase().includes(name.toLowerCase()) || 
+                authors[tempTitle].toLowerCase().includes(name.toLowerCase())
+                ) {
                     var bookButton = document.createElement("button");
                     bookButton.textContent = tempTitle;
                     li.appendChild(bookButton);
@@ -179,9 +169,10 @@
                     });
                     searchList.appendChild(bookButton);
                 }
-                
             }
-            localStorage.removeItem("search");
+            if (localStorage.getItem("search") != null) {
+                localStorage.removeItem("search");
+            }
 
             if (title != "Default Title" ) {
                 displayInfo(title);
@@ -273,8 +264,9 @@
         
 
         //If input is sent from homepage, attempt to search first
-
-        getBookInfo(localStorage.getItem("search"));
+        if (localStorage.getItem("search") != null) {
+            getBookInfo(localStorage.getItem("search"));
+        } 
 
         //If the user presses the search button on this page
         let button = document.getElementById("book-search");
@@ -284,6 +276,13 @@
             removeExistingButtons();
             addShelfButtons();
 
+        });
+        //If the user presses the search button on the navbar
+        let searchButton1 = document.getElementById("book-search-1");
+        searchButton1.addEventListener(
+         "click", () => {
+            var input = document.getElementById("book-input-1").value;
+            localStorage.setItem("search", input);
         });
         
 

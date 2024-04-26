@@ -65,9 +65,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="../index.html">BookSmart</a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" role="search" action="../book-search/task1.html">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="book-input-1">
+                <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
             </form>
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
@@ -126,6 +126,15 @@
             'Anansi Boys': 'Neil Gaiman', 'One Hundred Years of Solitude': 'Gabriel Garcia Marquez', 'The Andromeda Strain': 'Michael Crichton', 'Congo': 'Michael Crichton', 'Eleven Minutes': 'Paulo Coelho', 'Brave New World and Brave New World Revisited': 'Aldous Huxley', 'Good Omens': 'Neil Gaiman;Terry Pratchett', 'Their Eyes Were Watching God': 'Zora Neale Hurston', 'A Tree Grows in Brooklyn': 'Betty Smith', 'The Alchemist': 'Paulo Coelho', 'Veronika Decides to Die': 'Paulo Coelho', 'Coraline': 'Neil Gaiman', 'Stardust': 'Neil Gaiman', 'The Pact': 'Jodi Picoult', 'The Chronicles of Narnia (adult)': 'C. S. Lewis', 'The Trial': 'Franz Kafka', 'Frankenstein, Or, The Modern Prometheus': 'Mary Wollstonecraft Shelley', 'Emma': 'Jane Austen', 'A Tale of Two Cities': 'Charles Dickens', 'Mansfield Park': 'Jane Austen'
         }
 
+        //Search button in the navbar
+        let searchButton1 = document.getElementById("book-search-1");
+        searchButton1.addEventListener(
+            "click", () => {
+                var input = document.getElementById("book-input-1").value;
+                localStorage.setItem("search", input);
+            }
+        );
+
         const user = document.getElementById("username");
         user.innerText += " " + localStorage.getItem("login");
 
@@ -159,8 +168,8 @@
             console.log(localStorage);
         });
 
-
         
+
 
 
     </script>

@@ -132,9 +132,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="../index.html">BookSmart</a>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <form class="d-flex" role="search"  action="../book-search/task1.html">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="book-input-1">
+                <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
             </form>
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
@@ -487,6 +487,15 @@
         }
 
         addShelfButtons();
+
+        //Search button in the navbar
+        let searchButton1 = document.getElementById("book-search-1");
+        searchButton1.addEventListener(
+        "click", () => {
+            var input = document.getElementById("book-input-1").value;
+            localStorage.setItem("search", input);
+        }
+        );
     </script>
 
 
