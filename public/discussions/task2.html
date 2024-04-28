@@ -169,8 +169,6 @@
           </div>
           <div class="tab-content">
             <div class="tab-pane active" id="first">
-              
-                <div class="discussions">
                   <!-- End of post 1 -->
                   <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
                     <div class="row align-items-center">
@@ -189,7 +187,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
                   <!-- /End of post 1 --> 
               </div>
             </div>
@@ -232,7 +229,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Post</button>
+                    <button type="button" class="btn btn-primary" id="submit-post">Post</button>
                   </div>
                 </div>
               </div>
@@ -279,6 +276,30 @@
     </div>
 
 
+
+    <!--Template for post below-->>
+    <div class="hidden">
+      <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" id = "post-template">
+        <div class="row align-items-center">
+          <div class="col-md-8 mb-3 mb-sm-0">
+            <h5>
+              <a href="#" class="text-primary"> Books like The Secret History by Donna Tartt? </a>
+            </h5>
+            <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KenyeW</a></p>
+            <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
+          </div>
+          <div class="col-md-4 op-7">
+            <div class="row text-center op-7">
+              <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">141 Votes</span> </div>
+              <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">122 Replys</span> </div>
+              <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">290 Views</span> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!-- When the "create post" button is pressed, open a post template and when the post button is pressed, add the specific div type to the container? -->
     <script>
       //Search button in the navbar
@@ -289,6 +310,50 @@
             localStorage.setItem("search", input);
         }
        );
+
+        function addShoppingListItem(title) {
+        // First, we need to clone the template.
+          const template = document.getElementById("post-template");
+          const clone = template.cloneNode(true);
+          // clone.id = "";
+
+          // // Then, we need to fill in the details.
+          // const imageElement = clone.querySelector("[data-template-id=image]");
+          // if (image !== undefined) {
+          //   imageElement.src = image;
+          // }
+          // imageElement.alt = `Image of ${title}`;
+          // clone.querySelector("[data-template-id=title]").textContent = title;
+
+          // // Then, we need to set up the event listener for the delete button.
+          // const deleteButton = clone.querySelector(
+          //   "[data-template-id=delete-button]"
+          // );
+          // deleteButton.addEventListener("click", removeShoppingListItem);
+
+          // Finally, we need to add the new card to the list.
+          const list = document.getElementById("first");
+          list.appendChild(clone);
+
+          return clone;
+      }
+
+      // This function will remove an item from the shopping list.
+      function removeShoppingListItem(event) {
+        const card = event.target.closest(".card");
+        card.remove();
+      }
+
+
+      const btn = document.getElementById('submit-post');
+
+      btn.addEventListener('click', () => {
+        addShoppingListItem("Hello")
+      });
+
+
+
+
     </script>
 
    
