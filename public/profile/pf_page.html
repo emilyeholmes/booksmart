@@ -46,16 +46,17 @@
 
 
     <main>
-        <h1 id="username">Hello, </h1>
-        <h1>Shelves</h1>
-        <h3 id="savedShelves"></h3>
+        <center><h1 id="username">Hello, </h1></center>
+        <br>
+        <center><h2>Here are your Shelves:</h2></center>
+        <center><h3 id="savedShelves"></h3></center>
         <img id="image">
         <br>
         <br>
 
-        <label for="name">Tell us about what kind of books you like! This can be as little as a few words or a few sentences but will help us better tailor recommendations to you.</label>
+        <center><label for="name">Tell us about what kind of books you like! This can be as little as a few words or a few sentences but will help us better tailor recommendations to you.</label>
         <input type="text" id="recs"/>
-        <input type="submit" value="Submit" id="submit">
+        <input type="submit" value="Submit" id="submit"></center>
     </main>
 
     <nav class="navbar bg-body-tertiary fixed-top">
@@ -85,10 +86,10 @@
                             <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="recommendations/task3.html">Recommendations</a>
+                            <a class="nav-link" href="../recommendations/task3.html">Recommendations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Discussions</a>
+                            <a class="nav-link" href="../discussions/task2.html">Discussions</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -105,10 +106,7 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -138,21 +136,27 @@
         const user = document.getElementById("username");
         user.innerText += " " + localStorage.getItem("login");
 
-        //var storedShelves = JSON.parse(localStorage.getItem("savedShelves"));
-        //console.log(localStorage);
+        var retrievedShelves = JSON.parse(localStorage.getItem("Shelves"));
+        var shelfSection = document.getElementById("savedShelves");
+        for (let i = 0; i < retrievedShelves.length; i++) {
+            var currShelf = JSON.parse(localStorage.getItem(retrievedShelves[i]));
+            shelfSection.innerHTML += '<h3><b>' +  retrievedShelves[i] + '</b></h3>';
+            for (let i = 0; i < currShelf.length; i++) {
+                var bookName = currShelf[i];
+                shelfSection.innerHTML += '<p>' + bookName + '</p>';
+            }
+            shelfSection.innerHTML += '<img src = ' + images[bookName] + ' alt = None' + '>';
+            shelfSection.innerHTML += '<br>';
+            shelfSection.innerHTML += '<br>';
+            console.log(localStorage);
 
-        const shelves = document.getElementById("savedShelves");
-        var retrievedShelves = JSON.parse(localStorage.getItem("savedShelves"));
-        for (let i = 0; i < Object.keys(retrievedShelves).length; i++) {
-            shelves.innerHTML += '<p>' +  Object.keys(retrievedShelves)[i] + '</p>';
-            var bookName = retrievedShelves[Object.keys(retrievedShelves)[i]][0];
-            shelves.innerHTML += '<p>' + bookName + '</p>';
 
-            loadImage(bookName);
+
+            //loadImage(bookName);
 
             
             //console.log(retrievedShelves);
-            shelves.innerHTML += '<br>';
+            //shelves.innerHTML += '<br>';
 
         }
 
