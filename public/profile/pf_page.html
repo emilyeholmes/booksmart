@@ -271,11 +271,14 @@ main {
       const loginButton = document.querySelector(".btn-group");
       console.log(loginButton);
       loginButton.addEventListener("click", () => {
-        window.location.replace("../profile/pf_page.html"); 
-
-      }
-    
-    );
+        if (localStorage.getItem("loggedIn")) {
+          window.location.replace("../profile/pf_page.html"); 
+          //localStorage.setItem("loggedIn", true);
+        }
+        else {
+          window.location.replace("../profile/login_page.html"); 
+        }
+      });
 
 
       const logoutButton = document.getElementById("logout");
@@ -286,6 +289,14 @@ main {
       })
         
     </script>
+
+<script>
+    // Check if the page is being loaded for the first time or being refreshed
+    if (performance.navigation.type === 1) {
+        // Set the loggedIn item in localStorage to false
+        localStorage.removeItem("loggedIn");
+    }
+</script>
 
 
 </body>
