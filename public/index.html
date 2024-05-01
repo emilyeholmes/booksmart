@@ -132,10 +132,9 @@
             </div>
 
         <div class="btn-group">
-            <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-secondary">
                 <img src="images/profile.svg" alt="Button Image">
             </button>
-            
         </div>
 
 
@@ -331,40 +330,23 @@
 
 
       //PROFILE FUNCTIONALITY
-      localStorage.setItem("login", "amateur");
-      localStorage.setItem("password", "aces");
 
-      const storedUsername = localStorage.getItem("login");
-      const storedPassword = localStorage.getItem("password");
-
-      const button = document.getElementById("signinbutton");
-      button.addEventListener("click", () => {
-        //window.location.replace("../profile/pf_page.html"); 
-        // var profUsername = document.getElementById("usernameform").value;
-        // var profPassword = document.getElementById("passwordform").value;
-
-        // if (storedUsername == profUsername && storedPassword == profPassword) {
-        //     window.location.replace("../profile/pf_page.html");    
-        // }
-
-        // //const notif = document.getElementById("notification");
-        // if (storedUsername == profUsername && storedPassword != profPassword) {
-        //     alert("Sorry, your password is incorrect!");
-        // }
-
-        // if (storedUsername != profUsername) {
-        //     alert("Sorry, we don't recognize your username!");
-        // }
-          
+      const loginButton = document.querySelector(".btn-group");
+      console.log(loginButton);
+      
+      loginButton.addEventListener("click", () => {
+        if (!localStorage.getItem("loggedIn")) {
+          window.location.replace("../profile/login_page.html"); 
+          localStorage.setItem("loggedIn", True);
+        }
+        else {
+          window.location.replace("../profile/pf_page.html"); 
+        }
       });
 
-      const loginButton = document.querySelector(".btn.btn-secondary");
-      loginButton.addEventListener("click", () => {
-        window.location.replace("../profile/login_page.html"); 
-
-      }
+      localStorage.setItem("Shelves", JSON.stringify(["Romance", "Fantasy", "Cry Worthy"]));
+       
     
-    );
 
       </script>
       

@@ -146,6 +146,13 @@
                     
                 </div>
             </div>
+
+
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary">
+                <img src="../images/profile.svg" alt="Button Image">
+            </button>
         </div>
     </nav>
 
@@ -164,7 +171,7 @@
 
         localStorage.setItem("login", "amateur");
         localStorage.setItem("password", "aces");
-        //localStorage.setItem("Shelves", JSON.stringify(["Romance", "Fantasy", "Cry Worthy"]));
+        
         localStorage.setItem("Romance", JSON.stringify([]));
         localStorage.setItem("Fantasy", JSON.stringify([]));
         localStorage.setItem("Cry Worthy", JSON.stringify([]));
@@ -365,6 +372,20 @@
             localStorage.setItem("search", input);
             
         });
+
+
+
+
+        //PROFILE FUNCTIONALITY
+
+      const loginButton = document.querySelector(".btn-group");
+      console.log(loginButton);
+      loginButton.addEventListener("click", () => {
+        window.location.replace("../profile/login_page.html"); 
+
+      }
+    
+    );
         
 
     </script>

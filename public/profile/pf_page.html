@@ -110,6 +110,13 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary">
+                <img src="images/profile.svg" alt="Button Image">
+            </button>
+        </div>
     </nav>
 
     <script>
@@ -164,6 +171,18 @@
         console.log(input);
         input.value = localStorage.getItem("userData");
 
+
+
+        //PROFILE FUNCTIONALITY
+
+      const loginButton = document.querySelector(".btn-group");
+      console.log(loginButton);
+      loginButton.addEventListener("click", () => {
+        window.location.replace("../profile/login_page.html"); 
+
+      }
+    
+    );
         
     </script>
 
