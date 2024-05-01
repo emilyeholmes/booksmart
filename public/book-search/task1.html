@@ -36,31 +36,61 @@
             margin: 10px;
             cursor: pointer;
         }
+
+        #page-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 5em;
+           
+        }
+
+        #desc {
+            max-width: 58%;
+            margin: 20px;
+            text-align: center;
+            /*color: #00d8ec;*/
+        }
+
+        #related {
+            max-width: 70%;
+            margin: 20px;
+        }
     </style>
 </head>
 
-<body>
-    <header>
+<body  style="font-family: Helvetica Neue; background-color: #D4CBE5;">
+    <!-- <header>
         <h1>BookSmart!</h1>
-    </header>
+    </header> -->
 
 
     <main>
         
-            <label for="search">Type in Search Term!</label>
-            <input type="search" id="book-input">
-            <button id="book-search">Search</button> 
+        <div id="page-body">
+            <div>
+                <label for="search">Type in Search Term!</label>
+                <input type="search" id="book-input">
+                <button id="book-search">Search</button> 
+            </div>
+            
+            
+            <p></p>
+            <h1 id="book-title"></h1>
+            <h3 id="author"></h3>
+            <img id="image">
+            <p></p>
+            <p id="desc"></p>
+
+            <p id="related"></p>
+    
+            <a class = "dropdown-section"></a>
+        </div>
+            
         
-        <p id="book-title"></p>
-        <p id="desc"></p>
-        <p id="author"></p>
-        <img id="image">
-        <p id="related"></p>
-
-
-
-
-        <a class = "dropdown-section"></a>
+        
 
 
 
@@ -79,7 +109,6 @@
                 <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
             </form>
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
-
 
 
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
@@ -146,7 +175,7 @@
             document.getElementById("book-title").innerHTML = "";
             document.getElementById("desc").innerHTML = "";
             document.getElementById("image").src = "";
-            document.getElementById("author").innerHTML = "";
+            document.getElementById("author").innerHTML = "Your current search results: ";
 
             //Compare this name input and lowercase it 
             //Compare the lowercase name with the lowercase title from the dictionaries
@@ -157,6 +186,7 @@
             searchList.innerHTML = "";
             var li = document.createElement("li");
             
+
             for (const tempTitle in authors) {
                 if (name.toLowerCase() == tempTitle.toLowerCase()) {
                     title = tempTitle;
@@ -166,7 +196,11 @@
                 authors[tempTitle].toLowerCase().includes(name.toLowerCase())
                 ) {
                     var bookButton = document.createElement("button");
+                    bookButton.style.height = "50px";
                     bookButton.textContent = tempTitle;
+                    bookButton.style.color = "#ffffff"; 
+                    bookButton.style.padding = "10px";
+                    bookButton.style.backgroundColor = "#70566d";
                     li.appendChild(bookButton);
                     //add event handler
                     bookButton.addEventListener("click", () => {
