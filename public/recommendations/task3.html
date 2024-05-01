@@ -303,8 +303,9 @@
             document.getElementById('back').style.visibility = 'hidden';
             document.getElementById('shelves').style.visibility = 'hidden';
 
-            let userdata = localStorage.getItem("userdata");
-            userdata = userdata == "" ? "25 year old female. Interested in history, adventures, and romance. " : userdata;
+            let userdata = localStorage.getItem("userData");
+            console.log(userdata);
+            userdata = userdata == null ? "25 year old female. Interested in history, adventures, and romance. " : userdata;
 
             response = await fetch(
                 'https://noggin.rea.gent/empirical-damselfly-2712',
@@ -316,7 +317,7 @@
                     },
                     body: JSON.stringify({
                         // fill variables here.
-                        "data": "25 year old female. Interested in history, adventures, and romance. ",
+                        "data": userdata,
                         "liked": liked,
                         "disliked": disliked,
                         "alreadysuggested": alreadyRecommended,
