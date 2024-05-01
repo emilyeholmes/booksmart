@@ -36,27 +36,50 @@
             margin: 10px;
             cursor: pointer;
         }
+
+        #page-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 5em;
+           
+        }
+
+        #related {
+            max-width: 70%;
+            margin: 20px;
+        }
+
     </style>
 </head>
 
-<body>
-    <header>
+<body style="font-family: Helvetica Neue; background-color: #D4CBE5;">
+    <!-- <header>
         <h1>BookSmart!</h1>
-    </header>
+    </header> -->
 
 
     <main>
-        <center><h1 id="username">Hello, </h1></center>
-        <br>
-        <center><h2>Here are your Shelves:</h2></center>
-        <center><h3 id="savedShelves"></h3></center>
-        <img id="image">
-        <br>
-        <br>
+        <div id="page-body">
+            <h1 id="username">Hello, </h1>
+            <br>
+            <h2>Here are your Shelves:</h2>
+            <h3 id="savedShelves"></h3>
+            <img id="image">
+            <br>
+            <br>
 
-        <center><label for="name">Tell us about what kind of books you like! This can be as little as a few words or a few sentences and will help us better tailor recommendations to you.</label>
-        <input type="text" id="recs"/>
-        <input type="submit" value="Submit" id="submit"></center>
+            <label for="name" id="related">Tell us about what kind of books you like! This can be as little as a few words or a few sentences and will help us better tailor recommendations to you.</label>
+            
+            <input type="text" id="recs"/>
+            <input type="submit" value="Submit" id="submit">
+            
+            
+        </div>
+        
+        
     </main>
 
     <nav class="navbar bg-body-tertiary fixed-top">
@@ -109,6 +132,13 @@
                     
                 </div>
             </div>
+
+
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary">
+                <img src="../images/profile.svg" alt="Button Image">
+            </button>
         </div>
     </nav>
 
@@ -154,6 +184,8 @@
 
         
         const submitButton = document.getElementById("submit");
+        submitButton.style.backgroundColor = "#70566D";
+        submitButton.style.color = "#ffffff";
         submitButton.addEventListener("click", () => {
             const userData = document.getElementById("recs");
             localStorage.setItem("userData", userData.value);
@@ -164,6 +196,18 @@
         console.log(input);
         input.value = localStorage.getItem("userData");
 
+
+
+        //PROFILE FUNCTIONALITY
+
+      const loginButton = document.querySelector(".btn-group");
+      console.log(loginButton);
+      loginButton.addEventListener("click", () => {
+        window.location.replace("../profile/pf_page.html"); 
+
+      }
+    
+    );
         
     </script>
 
