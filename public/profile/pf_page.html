@@ -271,11 +271,14 @@ main {
       const loginButton = document.querySelector(".btn-group");
       console.log(loginButton);
       loginButton.addEventListener("click", () => {
-        window.location.replace("../profile/pf_page.html"); 
-
-      }
-    
-    );
+        if (localStorage.getItem("loggedIn")) {
+          window.location.replace("../profile/pf_page.html"); 
+          //localStorage.setItem("loggedIn", true);
+        }
+        else {
+          window.location.replace("../profile/login_page.html"); 
+        }
+      });
 
 
       const logoutButton = document.getElementById("logout");

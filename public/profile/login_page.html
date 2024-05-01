@@ -194,6 +194,7 @@
 
             if (username == user && password == pass) {
                 window.location.replace("pf_page.html");
+                localStorage.setItem("loggedIn", true);
             }
 
             const notif = document.getElementById("notification");
