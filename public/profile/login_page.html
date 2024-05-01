@@ -65,7 +65,7 @@
     </style>
 </head>
 
-<body>
+<body style="font-family: Helvetica Neue; background-color: #D4CBE5;">
     <header>
         <h2>BookSmart!</h2>
     </header>
@@ -163,6 +163,8 @@
        const password = localStorage.getItem("password");
 
        const button = document.getElementById("submit");
+       button.style.backgroundColor = "#70566D";
+        button.style.color = "#ffffff";
        button.addEventListener("click", () => {
             const user = document.getElementById("username").value;
             const pass = document.getElementById("password").value;
