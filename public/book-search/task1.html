@@ -70,11 +70,11 @@
     <main>
         
         <div id="page-body">
-            <div>
+            <!-- <div>
                 <label for="search">Type in Search Term!</label>
                 <input type="search" id="book-input">
                 <button id="book-search">Search</button> 
-            </div>
+            </div> -->
             
             
             <p></p>
@@ -146,6 +146,13 @@
                     
                 </div>
             </div>
+
+
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary">
+                <img src="../images/profile.svg" alt="Button Image">
+            </button>
         </div>
     </nav>
 
@@ -164,7 +171,7 @@
 
         localStorage.setItem("login", "amateur");
         localStorage.setItem("password", "aces");
-        //localStorage.setItem("Shelves", JSON.stringify(["Romance", "Fantasy", "Cry Worthy"]));
+        
         localStorage.setItem("Romance", JSON.stringify([]));
         localStorage.setItem("Fantasy", JSON.stringify([]));
         localStorage.setItem("Cry Worthy", JSON.stringify([]));
@@ -350,13 +357,13 @@
         } 
 
         //If the user presses the search button on this page
-        let button = document.getElementById("book-search");
-        button.addEventListener("click", () => {
-            var name = document.getElementById("book-input").value;
-            getBookInfo(name);
+        // let button = document.getElementById("book-search");
+        // button.addEventListener("click", () => {
+        //     var name = document.getElementById("book-input").value;
+        //     getBookInfo(name);
             
 
-        });
+        // });
         //If the user presses the search button on the navbar
         let searchButton1 = document.getElementById("book-search-1");
         searchButton1.addEventListener(
@@ -365,6 +372,20 @@
             localStorage.setItem("search", input);
             
         });
+
+
+
+
+        //PROFILE FUNCTIONALITY
+
+      const loginButton = document.querySelector(".btn-group");
+      console.log(loginButton);
+      loginButton.addEventListener("click", () => {
+        window.location.replace("../profile/login_page.html"); 
+
+      }
+    
+    );
         
 
     </script>
