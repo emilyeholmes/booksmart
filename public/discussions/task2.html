@@ -14,6 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 
 
     <!--  COLORS! 
@@ -58,8 +60,11 @@
             display: block;
         }
 
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
         body{
             margin-top:20px;
+            font-family: 'Montserrat', sans-serif;
             background:#eee;
             color: #708090;
         }
@@ -86,8 +91,6 @@
           font-weight: bolder;
           text-decoration: none;
         }
-
-        
 
         nav img {
           max-width: 100%; /* Ensures the image doesn't exceed the width of the nav */
@@ -237,12 +240,14 @@
           </div>
           <div class="tab-content">
             <div class="tab-pane active" id="first">
-                  <!-- End of post 1 -->
+                  <!-- Start of post 1 -->
                   <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
                     <div class="row align-items-center">
                       <div class="col-md-8 mb-3 mb-sm-0">
                         <h5>
+                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                           <a href="#" class="text-primary"> Books like The Secret History by Donna Tartt? </a>
+                          </button>
                         </h5>
                         <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">Tengerleg E</a></p>
                       </div>
@@ -251,6 +256,12 @@
                           <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">141 Votes</span> </div>
                           <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">122 Replys</span> </div>
                           <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">290 Views</span> </div>
+                        </div>
+                      </div>
+
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                          I really enjoyed this novel and would like to read books with a similar vibe. Any recs? 
                         </div>
                       </div>
                     </div>
@@ -354,14 +365,13 @@
     </div>
 
 
-
     <!--Template for post below-->>
     <div class="hidden">
       <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" id = "post-template">
         <div class="row align-items-center">
           <div class="col-md-8 mb-3 mb-sm-0">
             <h5>
-              <a href="#" class="text-primary" id="post-title"></a>
+              <a href="#" class="text-primary" id="post-title">Template</a>
             </h5>
             <p class="text-sm" id="description"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KenyeW</a></p>
             <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
@@ -380,6 +390,9 @@
 
     <!-- When the "create post" button is pressed, open a post template and when the post button is pressed, add the specific div type to the container? -->
     <script>
+
+      var postNum = 0;
+
       //Search button in the navbar
       let searchButton1 = document.getElementById("book-search-1");
        searchButton1.addEventListener(
@@ -390,6 +403,7 @@
        );
 
         function addPost() {
+          var postNum = postNum + 1;
         // First, we need to clone the template.
           const template = document.getElementById("post-template");
           const clone = template.cloneNode(true);
@@ -397,8 +411,22 @@
           var message = document.getElementById("message-text").value;
 
           clone.querySelectorAll('[id="post-title"]')[0].innerHTML = title;
+          // const select = clone.querySelector('#btn btn-link');
+          // select.setAttribute('data-target', 'collapse' + postNum);
+          // const selectPostMessage = clone.querySelector('#class');
+          // selectPostMessage.id = 'collapse' + postNum;
+
+    // select.id = "countryToVisit_" + countriesCounter;
+          // clone.querySelector('#btn btn-link').setAttribute('data-target', 'collapse' + postNum);
+          // clone.querySelector('#class').setAttribute('id', 'collapse' + postNum);
+          // data-target="#collapseOne"
+          // id="collapseOne"
+
+
+
+
           // clone.querySelectorAll('[id="description"]')[0].innerHTML = 
-          console.log(text.substring(0, 50) + "...");
+          // console.log(text.substring(0, 50) + "...");
 
           // clone.querySelector("[data-template-id=title]") += title;
 
@@ -463,6 +491,9 @@
       }
     
     );
+
+    $('.collapse').collapse()
+
 
     </script>
 
