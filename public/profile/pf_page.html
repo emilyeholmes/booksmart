@@ -203,7 +203,7 @@
         );
 
         const user = document.getElementById("username");
-        user.innerText += " " + localStorage.getItem("login");
+        user.innerText += " " + localStorage.getItem("login") + "!";
 
         var retrievedShelves = JSON.parse(localStorage.getItem("Shelves"));
         var shelfSection = document.getElementById("savedShelves");
