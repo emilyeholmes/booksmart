@@ -75,6 +75,8 @@
             
             <input type="text" id="recs"/>
             <input type="submit" value="Submit" id="submit">
+            <br>
+            <input type="submit" value="Log Out" id="logout">
             
             
         </div>
@@ -208,6 +210,14 @@
       }
     
     );
+
+
+      const logoutButton = document.getElementById("logout");
+      logoutButton.addEventListener("click", () => {
+        localStorage.setItem("loggedIn", true);
+        //console.log(localStorage.getItem("loggedIn"));
+        window.location.replace("../profile/login_page.html");   
+      })
         
     </script>
 
