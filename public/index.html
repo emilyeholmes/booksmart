@@ -454,7 +454,7 @@
               </center>
               <h4>BookSmart Spotlight</h4>
               <div class="seperator"></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi expedita eveniet consectetur, voluptates voluptatum, sit excepturi earum. Veniam eius amet, accusantium, deserunt officia, quos qui debitis laboriosam velit quis autem!</p>
+              <p> Kawakami’s prose veers between hyperreal granularity and passages of hallucinatory transcendence that have a paradoxical clarity.</p>
               <a href="#">Read More
                 <i class="fa fa-long-arrow-right"></i>
               </a>
@@ -467,7 +467,7 @@
               </center>
               <h4>Second-Person Narrative in Nelson's <i>Open Water</i></h4>
               <div class="seperator"></div>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi expedita eveniet consectetur, voluptates voluptatum, sit excepturi earum. Veniam eius amet, accusantium, deserunt officia, quos qui debitis laboriosam velit quis autem!</p>
+              <p>Narrated in the second person, the 'you' of the novel embodies a self that is at once a detached observer and a self-reflexive voice shaping the narrator’s own story... The gaze—that fleeting instant of exchange—weaves a significant undercurrent of belonging and alienation in the novel...</p>
               <a href="#">Read More
                 <i class="fa fa-long-arrow-right"></i>
               </a>
@@ -581,15 +581,14 @@
       //PROFILE FUNCTIONALITY
 
       const loginButton = document.querySelector(".btn-group");
-      console.log(loginButton);
       
       loginButton.addEventListener("click", () => {
-        if (!localStorage.getItem("loggedIn")) {
-          window.location.replace("../profile/login_page.html"); 
-          localStorage.setItem("loggedIn", True);
+        if (localStorage.getItem("loggedIn")) {
+          window.location.replace("../profile/pf_page.html"); 
+          //localStorage.setItem("loggedIn", true);
         }
         else {
-          window.location.replace("../profile/pf_page.html"); 
+          window.location.replace("../profile/login_page.html"); 
         }
       });
 
@@ -598,6 +597,14 @@
     
 
       </script>
+
+<script>
+  // Check if the page is being loaded for the first time or being refreshed
+  if (performance.navigation.type === 1) {
+      // Set the loggedIn item in localStorage to false
+      localStorage.removeItem("loggedIn");
+  }
+</script>
       
 
 
