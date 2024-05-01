@@ -527,6 +527,8 @@
         // Finally, we need to add the new card to the list.
         const list = document.getElementById("first");
         list.appendChild(clone);
+        document.getElementById("title-name").value = "";
+        document.getElementById("message-text").value = "";
 
         return clone;
     }
@@ -545,7 +547,6 @@
     btn.style.backgroundColor = "#70566d";
     btn.addEventListener('click', () => {
       addPost();
-
       //TODO: clear out the inputs within the modal
       
     });
@@ -562,7 +563,7 @@
 
 
 
-       const loginButton = document.querySelector(".btn-group");
+      const loginButton = document.querySelector(".btn-group");
       console.log(loginButton);
       loginButton.addEventListener("click", () => {
         window.location.replace("../profile/login_page.html"); 
