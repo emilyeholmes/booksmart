@@ -231,7 +231,24 @@
         submitButton.addEventListener("click", () => {
             const userData = document.getElementById("recs");
             localStorage.setItem("userData", userData.value);
+
+            // Create the alert element
+            const alertDiv = document.createElement("div");
+            alertDiv.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+            alertDiv.setAttribute("role", "alert");
+            alertDiv.innerHTML = "Book preferences saved! Update any time. <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+
+            // Set the position of the alert
+            alertDiv.style.position = "fixed";
+            alertDiv.style.top = "100px";
+            alertDiv.style.right = "20px";
+            alertDiv.style.zIndex = "9999"; // Ensure the alert appears above other elements
+
+            // Append the alert to the body
+            document.body.appendChild(alertDiv);
         });
+
+
 
 
         var input = document.getElementById("recs");

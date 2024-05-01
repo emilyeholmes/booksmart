@@ -87,12 +87,40 @@
           text-decoration: none;
         }
 
+        
+
         nav img {
           max-width: 100%; /* Ensures the image doesn't exceed the width of the nav */
         max-height: 100%; /* Ensures the image doesn't exceed the height of the nav */
             width: auto; /* Adjust as needed */
             height: auto; /* Adjust as needed */
         }
+
+        .navbar {
+          height: 9vh;
+          padding-top: 1vh;
+        }
+
+        .book-rating {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 5px;
+      margin: 20px auto;
+      max-width: 400px;
+      background-color: white; /* Added white background */
+    }
+    .book-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .rating-stars {
+      color: gold;
+    }
+    .reviewer-name {
+      font-style: italic;
+      margin-top: 10px;
+    }
+
         /* a{
             text-decoration:none;    
         }
@@ -120,7 +148,7 @@
               <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="../index.html" id="main-title"> 
-            <img style='margin-right: 2vw; min-height: 7vh; max-height: 8vh;'src="../booksmart-logo-small.png" alt="">
+            <img style='margin-right: 2vw; min-height: 7vh; max-height: 7vh;'src="../booksmart-logo-small.png" alt="">
             BookSmart 
           </a>
           <!-- <div style="max-height: 90%; max-width: 90%;"></div> -->
@@ -216,8 +244,7 @@
                         <h5>
                           <a href="#" class="text-primary"> Books like The Secret History by Donna Tartt? </a>
                         </h5>
-                        <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KenyeW</a></p>
-                        <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
+                        <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">Tengerleg E</a></p>
                       </div>
                       <div class="col-md-4 op-7">
                         <div class="row text-center op-7">
@@ -233,8 +260,20 @@
 
             <div class="tab-pane" id="second">
               <div class="reviews">
-                <h4>Dr. Martin</h4>
-                <p>PhD in Applied Chemistry</p>
+                
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 mx-auto">
+                      <div class="book-rating">
+                        <h2 class="book-title">The Secret History</h2>
+                        <p>Rating: <span class="rating-stars">★★★★☆</span> (4.5/5)</p>
+                        <p>This is a captivating novel that will keep you hooked from beginning to end.</p>
+                        <p class="reviewer-name">Reviewed by: Emily H</p> <!-- Added reviewer's name -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -285,14 +324,14 @@
                 <h6 class="text-primary text-sm">
                   <a href="#" class="text-primary"> Is Lucy Gray still alive? </a>
                 </h6>
-                <p class="mb-0 text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">39 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">AppStrapMaster</a></p>
+                <p class="mb-0 text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">39 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">James H</a></p>
               </div>
               <hr class="m-0">
               <div class="pos-relative px-3 py-3">
                 <h6 class="text-primary text-sm">
                   <a href="#" class="text-primary"> Leigh Bardugo at the City of Arts & Lectures! </a>
                 </h6>
-                <p class="mb-0 text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">58 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">DanielD</a></p>
+                <p class="mb-0 text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">58 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">Vivian L</a></p>
               </div>
             </div>
             <!-- <div class="bg-white text-sm">
