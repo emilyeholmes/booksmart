@@ -51,7 +51,7 @@
         main {
             font-family: 'Montserrat', sans-serif;
         }
-        
+
         .card {
             margin: 0 auto;
         }
@@ -75,8 +75,7 @@
         @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
         body{
-            margin-top:20px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', sans-serif;;
             background:#eee;
             color: #708090;
         }
@@ -110,11 +109,11 @@
             width: auto; /* Adjust as needed */
             height: auto; /* Adjust as needed */
         }
-
+/* 
         .navbar {
           height: 9vh;
           padding-top: 1vh;
-        }
+        } */
 
         .book-rating {
       border: 1px solid #ccc;
@@ -152,9 +151,8 @@
     </style>
 </head>
 
-<body style="font-family: Helvetica Neue; background-color: #D4CBE5; color: #42273B;">
-
-    <!-- <h1>BookSmart</h1> -->
+<main>
+  <body style="background-color: #D4CBE5; color: #42273B;">
 
     <nav class="navbar bg-body-tertiary fixed-top">
       <div class="container-fluid">
@@ -174,7 +172,7 @@
               <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
           </form>
           <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
-
+  
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
               aria-labelledby="offcanvasNavbarLabel">
               <div class="offcanvas-header">
@@ -215,17 +213,21 @@
                   </ul>
               </div>
           </div>
-
+  
       <div class="btn-group">
           <button type="button" class="btn btn-secondary">
               <img src="../images/profile.svg" alt="Button Image">
           </button>
       </div>
+  
+  
+  </nav>  
 
-
-  </nav>
-
-<div class="container">
+    <!-- <h1>BookSmart</h1> -->
+  
+    
+  
+  <div class="container">
       <div class="row">
         <!-- Main content -->
         <div class="col-lg-9 mb-3">
@@ -243,7 +245,7 @@
               </div>
             </div> -->
           </div>
-
+  
           <div>
             <ul class="nav nav-tabs">
               <li class="active settingshead"><a href="#first" data-toggle="tab">Discussions</a></li>
@@ -340,7 +342,7 @@
 
                   
             </div>
-
+  
             <div class="tab-pane" id="second">
               <div class="reviews">
                 
@@ -356,7 +358,7 @@
                     </div>
                   </div>
                 </div>
-
+  
               </div>
             </div>
           </div>
@@ -365,7 +367,7 @@
         <!-- Sidebar content -->
         <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0">
           <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;"></div><div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}" data-toggle="sticky" class="sticky" style="top: 85px;"><div class="sticky-inner">
-
+  
             <button type="button" id="create-post" class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-3 bg-op-6" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create Post</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -396,7 +398,7 @@
               </div>
             </div>
             
-
+  
             <!-- <a class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-3 bg-op-6 roboto-bold" href="#">Create Post</a> -->
             <div class="bg-white mb-3">
               <h4 class="px-3 py-4 op-5 m-0">
@@ -457,6 +459,11 @@
         </div>
       </div>
     </div>
+  
+  </body>
+</main>
+
+
 
 
     <!-- When the "create post" button is pressed, open a post template and when the post button is pressed, add the specific div type to the container? -->
@@ -499,59 +506,59 @@
           // clone.querySelectorAll('[id="description"]')[0].innerHTML = 
           // console.log(text.substring(0, 50) + "...");
 
-          // clone.querySelector("[data-template-id=title]") += title;
+        // clone.querySelector("[data-template-id=title]") += title;
 
-          // clone.id = "";
+        // clone.id = "";
 
-          // // Then, we need to fill in the details.
-          // const imageElement = clone.querySelector("[data-template-id=image]");
-          // if (image !== undefined) {
-          //   imageElement.src = image;
-          // }
-          // imageElement.alt = `Image of ${title}`;
-          // clone.querySelector("[data-template-id=title]").textContent = title;
+        // // Then, we need to fill in the details.
+        // const imageElement = clone.querySelector("[data-template-id=image]");
+        // if (image !== undefined) {
+        //   imageElement.src = image;
+        // }
+        // imageElement.alt = `Image of ${title}`;
+        // clone.querySelector("[data-template-id=title]").textContent = title;
 
-          // // Then, we need to set up the event listener for the delete button.
-          // const deleteButton = clone.querySelector(
-          //   "[data-template-id=delete-button]"
-          // );
-          // deleteButton.addEventListener("click", removeShoppingListItem);
+        // // Then, we need to set up the event listener for the delete button.
+        // const deleteButton = clone.querySelector(
+        //   "[data-template-id=delete-button]"
+        // );
+        // deleteButton.addEventListener("click", removeShoppingListItem);
 
-          // Finally, we need to add the new card to the list.
-          const list = document.getElementById("first");
-          list.appendChild(clone);
+        // Finally, we need to add the new card to the list.
+        const list = document.getElementById("first");
+        list.appendChild(clone);
 
-          return clone;
-      }
+        return clone;
+    }
 
-      // This function will remove an item from the shopping list.
-      function removePost(event) {
-        const card = event.target.closest(".card");
-        card.remove();
-      }
+    // This function will remove an item from the shopping list.
+    function removePost(event) {
+      const card = event.target.closest(".card");
+      card.remove();
+    }
 
-      const create = document.getElementById('create-post');
-      create.style.backgroundColor = "#70566d";
-      create.style.borderColor = "#70566d";
+    const create = document.getElementById('create-post');
+    create.style.backgroundColor = "#70566d";
+    create.style.borderColor = "#70566d";
 
-      const btn = document.getElementById('submit-post');
-      btn.style.backgroundColor = "#70566d";
-      btn.addEventListener('click', () => {
-        addPost();
+    const btn = document.getElementById('submit-post');
+    btn.style.backgroundColor = "#70566d";
+    btn.addEventListener('click', () => {
+      addPost();
 
-        //TODO: clear out the inputs within the modal
-        
-      });
+      //TODO: clear out the inputs within the modal
+      
+    });
 
 
 
-       //PROFILE FUNCTIONALITY
+     //PROFILE FUNCTIONALITY
 
-      // var activeTab = null;
-      // $('a[data-toggle="tab"]').on('shown', function (e) {
-      //   activeTab = e.target;
-      //   console.log(activeTab);
-      // })
+    // var activeTab = null;
+    // $('a[data-toggle="tab"]').on('shown', function (e) {
+    //   activeTab = e.target;
+    //   console.log(activeTab);
+    // })
 
 
 
@@ -566,11 +573,8 @@
     $('.collapse').collapse()
 
 
-    </script>
-
-   
+  </script>
 
 
-</body>
 
 </html>
