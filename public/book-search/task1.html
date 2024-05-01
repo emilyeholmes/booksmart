@@ -445,6 +445,14 @@
 
     </script>
 
+<script>
+    // Check if the page is being loaded for the first time or being refreshed
+    if (performance.navigation.type === 1) {
+        // Set the loggedIn item in localStorage to false
+        localStorage.removeItem("loggedIn");
+    }
+</script>
+
 
 </body>
 
