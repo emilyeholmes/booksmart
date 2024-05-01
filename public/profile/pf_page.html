@@ -54,7 +54,7 @@
         <br>
         <br>
 
-        <center><label for="name">Tell us about what kind of books you like! This can be as little as a few words or a few sentences but will help us better tailor recommendations to you.</label>
+        <center><label for="name">Tell us about what kind of books you like! This can be as little as a few words or a few sentences and will help us better tailor recommendations to you.</label>
         <input type="text" id="recs"/>
         <input type="submit" value="Submit" id="submit"></center>
     </main>
@@ -144,24 +144,12 @@
             for (let i = 0; i < currShelf.length; i++) {
                 var bookName = currShelf[i];
                 shelfSection.innerHTML += '<p>' + bookName + '</p>';
+                shelfSection.innerHTML += '<img src = ' + images[bookName] + ' alt = None' + '>';
             }
-            shelfSection.innerHTML += '<img src = ' + images[bookName] + ' alt = None' + '>';
             shelfSection.innerHTML += '<br>';
             shelfSection.innerHTML += '<br>';
-            console.log(localStorage);
 
 
-
-            //loadImage(bookName);
-
-            
-            //console.log(retrievedShelves);
-            //shelves.innerHTML += '<br>';
-
-        }
-
-        async function loadImage(name) {
-            document.getElementById("image").src = images[name];
         }
 
         
@@ -169,13 +157,14 @@
         submitButton.addEventListener("click", () => {
             const userData = document.getElementById("recs");
             localStorage.setItem("userData", userData.value);
-            console.log(localStorage);
         });
 
+
+        var input = document.getElementById("recs");
+        console.log(input);
+        input.value = localStorage.getItem("userData");
+
         
-
-
-
     </script>
 
 
