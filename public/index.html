@@ -135,17 +135,7 @@
             <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="images/profile.svg" alt="Button Image">
             </button>
-            <form class="dropdown-menu p-4">
-                <div class="form-group">
-                  <label for="usernameform">Username</label>
-                  <input type="text" class="form-control" id="usernameform" placeholder="Username">
-                </div>
-                <div class="form-group">
-                  <label for="passwordform">Password</label>
-                  <input type="text" class="form-control" id="passwordform" placeholder="Password">
-                </div>
-                <button type="submit" id = "signinbutton" class="btn btn-primary">Sign in</button>
-              </form>
+            
         </div>
 
 
@@ -347,23 +337,32 @@
 
       const button = document.getElementById("signinbutton");
       button.addEventListener("click", () => {
-        var profUsername = document.getElementById("usernameform").value;
-        var profPassword = document.getElementById("passwordform").value;
+        //window.location.replace("../profile/pf_page.html"); 
+        // var profUsername = document.getElementById("usernameform").value;
+        // var profPassword = document.getElementById("passwordform").value;
 
-        if (storedUsername == profUsername && storedPassword == profPassword) {
-            window.location.replace("../profile/pf_page.html");    
-        }
+        // if (storedUsername == profUsername && storedPassword == profPassword) {
+        //     window.location.replace("../profile/pf_page.html");    
+        // }
 
-        //const notif = document.getElementById("notification");
-        if (storedUsername == profUsername && storedPassword != profPassword) {
-            alert("Sorry, your password is incorrect!");
-        }
+        // //const notif = document.getElementById("notification");
+        // if (storedUsername == profUsername && storedPassword != profPassword) {
+        //     alert("Sorry, your password is incorrect!");
+        // }
 
-        if (storedUsername != profUsername) {
-            alert("Sorry, we don't recognize your username!");
-        }
+        // if (storedUsername != profUsername) {
+        //     alert("Sorry, we don't recognize your username!");
+        // }
           
       });
+
+      const loginButton = document.querySelector(".btn.btn-secondary");
+      loginButton.addEventListener("click", () => {
+        window.location.replace("../profile/login_page.html"); 
+
+      }
+    
+    );
 
       </script>
       
