@@ -52,6 +52,32 @@
             margin: 20px;
         }
 
+        #main-title {
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          color: #588157;
+          font-size: xx-large;
+          font-weight: bolder;
+          margin-right: 5vw;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        #side-label {
+          color: #588157;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-size: x-large;
+          font-weight: bolder;
+        }
+
+        nav img {
+          max-width: 100%; /* Ensures the image doesn't exceed the width of the nav */
+        max-height: 100%; /* Ensures the image doesn't exceed the height of the nav */
+            width: auto; /* Adjust as needed */
+            height: auto; /* Adjust as needed */
+        }
+
     </style>
 </head>
 
@@ -62,6 +88,75 @@
 
 
     <main>
+
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html" id="main-title">BookSmart 
+                  <img style='margin-left: 2vw; min-height: 7vh; max-height: 8vh;'src="../booksmart-logo-small.png" alt="">
+                </a>
+                <!-- <div style="max-height: 90%; max-width: 90%;"></div> -->
+                
+                
+                <form class="d-flex" role="search" action="../book-search/task1.html">
+                    <input class="form-control me-2" type="search" placeholder="Find a book" aria-label="Search" id="book-input-1">
+                    <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
+                </form>
+                <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
+    
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                    aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                          <a id="side-label" href="../index.html">BookSmart 
+                            <img style='margin-left: 2vw; min-height: 7vh; max-height: 8vh'src="../booksmart-logo-small.png" alt="">
+                          </a>
+                
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../recommendations/task3.html">Recommendations</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="../discussions/task2.html">Discussions</a>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+    
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary">
+                    <img src="../images/profile.svg" alt="Button Image">
+                </button>
+            </div>
+    
+    
+        </nav>
+
+
         <div id="page-body">
             <h1 id="username">Hello, </h1>
             <br>
@@ -82,65 +177,6 @@
         
     </main>
 
-    <nav class="navbar bg-body-tertiary fixed-top">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="../index.html">BookSmart</a>
-            <form class="d-flex" role="search" action="../book-search/task1.html">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="book-input-1">
-                <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
-            </form>
-            <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
-
-
-
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookSmart</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../recommendations/task3.html">Recommendations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../discussions/task2.html">Discussions</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    
-                </div>
-            </div>
-
-
-
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary">
-                <img src="../images/profile.svg" alt="Button Image">
-            </button>
-        </div>
-    </nav>
 
     <script>
         let descriptions = {

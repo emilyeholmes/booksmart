@@ -117,6 +117,27 @@
                 transform: rotate(360deg);
             }
         }
+
+        #main-title {
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          color: #588157;
+          font-size: xx-large;
+          font-weight: bolder;
+          margin-right: 5vw;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        #side-label {
+          color: #588157;
+          font-family: Georgia, 'Times New Roman', Times, serif;
+          font-size: x-large;
+          font-weight: bolder;
+        }
+
+        
     </style>
 
 
@@ -125,25 +146,36 @@
         <h1>BookSmart!</h1>
     </header>
 
+    <br>
+    <br>
+
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="../index.html">BookSmart</a>
-            <form class="d-flex" role="search"  action="../book-search/task1.html">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="book-input-1">
+            <a class="navbar-brand" href="../index.html" id="main-title">BookSmart 
+              <img style='margin-left: 2vw; min-height: 7vh; max-height: 8vh;'src="../booksmart-logo-small.png" alt="">
+            </a>
+            <!-- <div style="max-height: 90%; max-width: 90%;"></div> -->
+            
+            
+            <form class="d-flex" role="search" action="../book-search/task1.html">
+                <input class="form-control me-2" type="search" placeholder="Find a book" aria-label="Search" id="book-input-1">
                 <button class="btn btn-outline-success" type="submit" id="book-search-1">Search</button>
             </form>
             <!-- <img class="profile-pic" src="/images/profile.svg"/> -->
 
-
-
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><a href="../index.html">BookSmart</a></h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                      <a id="side-label" href="../index.html">BookSmart 
+                        <img style='margin-left: 2vw; min-height: 7vh; max-height: 8vh'src="../booksmart-logo-small.png" alt="">
+                      </a>
+            
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -157,7 +189,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../discussions/task2.html">Discussions</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Dropdown
@@ -170,19 +202,18 @@
                                 </li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary">
-                    <img src="../images/profile.svg" alt="Button Image">
-                </button>
-            </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary">
+                <img src="../images/profile.svg" alt="Button Image">
+            </button>
+        </div>
+
+
     </nav>
 
 
