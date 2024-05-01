@@ -133,13 +133,14 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    
                 </div>
             </div>
-        </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary">
+                  <img src="../images/profile.svg" alt="Button Image">
+              </button>
+          </div>
     </nav>
 
 <div class="container">
@@ -361,6 +362,9 @@
       });
 
 
+
+       //PROFILE FUNCTIONALITY
+
       // var activeTab = null;
       // $('a[data-toggle="tab"]').on('shown', function (e) {
       //   activeTab = e.target;
@@ -368,6 +372,15 @@
       // })
 
 
+
+       const loginButton = document.querySelector(".btn-group");
+      console.log(loginButton);
+      loginButton.addEventListener("click", () => {
+        window.location.replace("../profile/login_page.html"); 
+
+      }
+    
+    );
 
     </script>
 
