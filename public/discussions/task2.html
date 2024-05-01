@@ -205,13 +205,12 @@
         <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0">
           <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;"></div><div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}" data-toggle="sticky" class="sticky" style="top: 85px;"><div class="sticky-inner">
 
-
             <button type="button" class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-3 bg-op-6" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create Post</button>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">New Discussion Post</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -220,7 +219,7 @@
                     <form>
                       <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Title</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" class="form-control" id="title-name">
                       </div>
                       <div class="form-group">
                         <label for="message-text" class="col-form-label">Content</label>
@@ -230,7 +229,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="submit-post">Post</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-post">Post</button>
                   </div>
                 </div>
               </div>
@@ -284,9 +283,9 @@
         <div class="row align-items-center">
           <div class="col-md-8 mb-3 mb-sm-0">
             <h5>
-              <a href="#" class="text-primary"> Books like The Secret History by Donna Tartt? </a>
+              <a href="#" class="text-primary" id="post-title"></a>
             </h5>
-            <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KenyeW</a></p>
+            <p class="text-sm" id="description"><span class="op-6">Posted</span> <a class="text-black" href="#">20 minutes</a> <span class="op-6">ago by</span> <a class="text-black" href="#">KenyeW</a></p>
             <div class="text-sm op-5"> <a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2" href="#">#AppStrap Theme</a> <a class="text-black mr-2" href="#">#Wordpress</a> </div>
           </div>
           <div class="col-md-4 op-7">
@@ -312,10 +311,19 @@
         }
        );
 
-        function addShoppingListItem(title) {
+        function addPost() {
         // First, we need to clone the template.
           const template = document.getElementById("post-template");
           const clone = template.cloneNode(true);
+          var title = document.getElementById("title-name").value;
+          var message = document.getElementById("message-text").value;
+
+          clone.querySelectorAll('[id="post-title"]')[0].innerHTML = title;
+          // clone.querySelectorAll('[id="description"]')[0].innerHTML = 
+          console.log(text.substring(0, 50) + "...");
+
+          // clone.querySelector("[data-template-id=title]") += title;
+
           // clone.id = "";
 
           // // Then, we need to fill in the details.
@@ -340,20 +348,30 @@
       }
 
       // This function will remove an item from the shopping list.
-      function removeShoppingListItem(event) {
+      function removePost(event) {
         const card = event.target.closest(".card");
         card.remove();
       }
 
-
       const btn = document.getElementById('submit-post');
-
       btn.addEventListener('click', () => {
-        addShoppingListItem("Hello")
+        addPost();
+
+        //TODO: clear out the inputs within the modal
+        
       });
 
 
+
        //PROFILE FUNCTIONALITY
+
+      // var activeTab = null;
+      // $('a[data-toggle="tab"]').on('shown', function (e) {
+      //   activeTab = e.target;
+      //   console.log(activeTab);
+      // })
+
+
 
        const loginButton = document.querySelector(".btn-group");
       console.log(loginButton);
