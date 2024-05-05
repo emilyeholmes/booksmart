@@ -545,7 +545,7 @@
                                 alert("Successfully created and added to " + newShelfName + " shelf!");
                                 localStorage.setItem(newShelfName, JSON.stringify([]));
                                 var shelf = JSON.parse(localStorage.getItem(newShelfName));
-                                shelf.push(document.getElementById("book-title").innerHTML);
+                                shelf.push(document.getElementById("result").innerHTML);
 
                                 localStorage.setItem(newShelfName, JSON.stringify(shelf));
 
