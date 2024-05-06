@@ -35,11 +35,10 @@
             margin-left: 1vw;
             cursor: pointer;
             text-align: center;
-            padding: 5px 10px;
-            padding-top: 6px;
-            border-radius: 20px;
+            padding: 10px 18px;
+            border-radius: 30px;
             border: 2px solid #70566D;
-            background-color: #D4CBE5;
+            background-color: whitesmoke;
         }
 
         #top-bar {
@@ -149,6 +148,18 @@
           text-decoration: none;
         }
 
+        .dropdown-section {
+            background-color: whitesmoke;
+            border: 2px solid #70566D;
+            padding: 10px 18px;
+            padding-bottom: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            text-align: center;
+            color: black;
+            text-decoration: none;
+        }
+
         
     </style>
 
@@ -238,7 +249,8 @@
 
             <div id="top-bar">
                 <h6 id="back" style="visibility: hidden"><em>go back..</em>.</h6>
-                <ul id="shelves" style="visibility: hidden;"></ul>
+                <a class = "dropdown-section"></a>
+                <!-- <ul id="shelves" style="visibility: hidden;"></ul> -->
             </div>
 
 
@@ -312,7 +324,7 @@
             document.getElementById("horizontal").style.display = "none";
             document.getElementById('desc').style.display = 'none';
             document.getElementById('back').style.visibility = 'hidden';
-            document.getElementById('shelves').style.visibility = 'hidden';
+            document.querySelector('.dropdown-section').style.visibility = 'hidden';
 
             let userdata = localStorage.getItem("userData");
             console.log(userdata);
@@ -351,7 +363,7 @@
             document.getElementById('loading-spinner').style.display = 'none';
             document.getElementById("horizontal").style.display = "flex";
             document.getElementById('desc').style.display = 'block';
-            document.getElementById('shelves').style.visibility = 'visible';
+            document.querySelector('.dropdown-section').style.visibility = 'visible';
 
             displayTags(response);
 
@@ -472,70 +484,178 @@
         var books = { "Romance": [], "Fantasy": [], "Cry Worthy": [] };
 
         function addShelfButtons() {
-            const shelfSection = document.getElementById("shelves");
 
-            const shelfAdd = document.createElement("select");
-            shelfAdd.className = "form-select form-select-sm";
+            //NEW DROPDOWN
+            const shelfButton = document.querySelector(".dropdown-section");
 
-            //Default button, doesnt do anything
-            const option1 = document.createElement("option");
-            option1.value = "Add to Shelf";
-            option1.innerHTML = "<p style='font-style: italic'>Add to Shelf</p>";
-            // option1.style.fontStyle = "italic";
-            shelfAdd.appendChild(option1);
+            const addToShelf = document.createElement("a");
+            addToShelf.className = "nav-link dropdown-toggle";
+            addToShelf.role = "button";
+            addToShelf.setAttribute("data-bs-toggle", "dropdown");
+            addToShelf.setAttribute("aria-expanded", "false");
+            addToShelf.value = "Add to Shelf";
+            addToShelf.innerHTML = "Add to Shelf";
+            shelfButton.appendChild(addToShelf);
 
-            const option2 = document.createElement("option");
-            option2.value = "CreateShelf";
-            option2.innerHTML = "Create New Shelf";
-            shelfAdd.appendChild(option2);
+            const options = document.createElement("ul");
+            options.className = "dropdown-menu";
 
+            const options1 = document.createElement("a");
+            options1.className = "dropdown-item";
+            options1.innerHTML = "Create New Shelf";
+            options1.value = "Create New Shelf";
+            options.appendChild(options1);
 
-            const option3 = document.createElement("option");
-            option3.value = "Romance";
-            option3.innerHTML = "Romance";
-            shelfAdd.appendChild(option3);
-
-            const option4 = document.createElement("option");
-            option4.value = "Fantasy";
-            option4.innerHTML = "Fantasy";
-            shelfAdd.appendChild(option4);
-
-            const option5 = document.createElement("option");
-            option5.value = "Cry Worthy";
-            option5.innerHTML = "Cry Worthy";
-            shelfAdd.appendChild(option5);
-
-            shelfSection.appendChild(shelfAdd);
-
-            shelfAdd.addEventListener("change", () => {
+            const divider = document.createElement("li");
+            const divider2 = document.createElement("hr");
+            divider2.className = "dropdown-divider";
+            divider.appendChild(divider2);
+            options.appendChild(divider);
 
 
-                for (let i = 2; i < shelfAdd.length; i++) {
-                    if (shelfAdd.value == shelfAdd[i].value) {
-                        alert("Successfully added to " + shelfAdd.value + " shelf!");
-                        //TO DO: add book to shelf storage
-                        books[shelfAdd.value].push(document.getElementById("result").innerText);
-                        localStorage.setItem("savedShelves", JSON.stringify(books));
+
+            var shelfList = JSON.parse(localStorage.getItem("Shelves"));
+            console.log(shelfList);
+            for (let i = 0; i < shelfList.length; i++) {
+                const options2 = document.createElement("a");
+                options2.className = "dropdown-item";
+                options2.innerHTML = shelfList[i];
+                options2.value = shelfList[i];
+                options.appendChild(options2);
+
+                shelfButton.appendChild(options);
+            }
+
+
+
+            //Adding to shelf functionality
+            const dropdownOptions = document.querySelectorAll(".dropdown-item");
+            for (let i = 0; i < dropdownOptions.length; i++) {
+                dropdownOptions[i].addEventListener("click", () => {
+                    if (dropdownOptions[i].value == "Create New Shelf") {
+                        const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
+                        
+                        if (newShelfName != null && newShelfName != "" ) {
+                            var shelfList = JSON.parse(localStorage.getItem("Shelves"));
+                            if (shelfList.includes(newShelfName)) {
+                                alert("Sorry, " + newShelfName + " already exists!");
+                            }
+                            else {
+                                //TO DO: add shelf to storage
+                                alert("Successfully created and added to " + newShelfName + " shelf!");
+                                localStorage.setItem(newShelfName, JSON.stringify([]));
+                                var shelf = JSON.parse(localStorage.getItem(newShelfName));
+                                shelf.push(document.getElementById("result").innerHTML);
+
+                                localStorage.setItem(newShelfName, JSON.stringify(shelf));
+
+                                var diffShelves = JSON.parse(localStorage.getItem("Shelves"));
+                                diffShelves.push(newShelfName);
+                                console.log(diffShelves);
+                                localStorage.setItem("Shelves", JSON.stringify(diffShelves));
+                            }
+                        
+                        }
+                        const options5 = document.createElement("a");
+                        options5.className = "dropdown-item";
+                        options5.innerHTML = newShelfName;
+                        options5.value = newShelfName;
+                        options.appendChild(options5);
+                        shelfButton.appendChild(options);
+                        options5.addEventListener("click", () => {
+                            alert("Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + newShelfName + " shelf!");
+                        })
                     }
-                }
+                    else {
+                        console.log("here1");
+                        var currShelf = JSON.parse(localStorage.getItem(dropdownOptions[i].value));
+                        if (currShelf.includes(document.getElementById("result").innerHTML)) {
+                            alert("Sorry, " + document.getElementById("result").innerHTML + " is already in the " + dropdownOptions[i].value + " shelf!");
+                        }
+                        else {
+                            console.log("here1");
+                            alert("Successfully added to " + dropdownOptions[i].value + " shelf!");
+                            //books[dropdownOptions[i].value].push(document.getElementById("book-title").innerHTML);
+                            var currShelf = JSON.parse(localStorage.getItem(dropdownOptions[i].value));
+                            currShelf.push(document.getElementById("result").innerHTML);
 
+                            localStorage.setItem(dropdownOptions[i].value, JSON.stringify(currShelf));
 
-                if (shelfAdd.value == "CreateShelf") {
-                    const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
-                    if (newShelfName != null || newShelfName != "") {
-                        //TO DO: add shelf to storage
-                        alert("Successfully created " + newShelfName + " shelf!");
-                        books[newShelfName] = [];
+                            console.log(localStorage);
+                        }
+
                     }
-                    const option6 = document.createElement("option");
-                    option6.value = newShelfName;
-                    option6.innerHTML = newShelfName;
-                    shelfAdd.appendChild(option6);
-                }
+                });
+            }
 
-            });
+            }
 
-        }
+        // function addShelfButtons() {
+        //     const shelfSection = document.getElementById("shelves");
+
+        //     const shelfAdd = document.createElement("select");
+        //     shelfAdd.className = "form-select form-select-sm";
+
+        //     //Default button, doesnt do anything
+        //     const option1 = document.createElement("option");
+        //     option1.value = "Add to Shelf";
+        //     option1.innerHTML = "<p style='font-style: italic'>Add to Shelf</p>";
+        //     // option1.style.fontStyle = "italic";
+        //     shelfAdd.appendChild(option1);
+
+        //     const option2 = document.createElement("option");
+        //     option2.value = "CreateShelf";
+        //     option2.innerHTML = "Create New Shelf";
+        //     shelfAdd.appendChild(option2);
+
+
+        //     const option3 = document.createElement("option");
+        //     option3.value = "Romance";
+        //     option3.innerHTML = "Romance";
+        //     shelfAdd.appendChild(option3);
+
+        //     const option4 = document.createElement("option");
+        //     option4.value = "Fantasy";
+        //     option4.innerHTML = "Fantasy";
+        //     shelfAdd.appendChild(option4);
+
+        //     const option5 = document.createElement("option");
+        //     option5.value = "Cry Worthy";
+        //     option5.innerHTML = "Cry Worthy";
+        //     shelfAdd.appendChild(option5);
+
+        //     shelfSection.appendChild(shelfAdd);
+
+        //     shelfAdd.addEventListener("change", () => {
+
+
+        //         for (let i = 2; i < shelfAdd.length; i++) {
+        //             if (shelfAdd.value == shelfAdd[i].value) {
+        //                 alert("Successfully added to " + shelfAdd.value + " shelf!");
+        //                 //TO DO: add book to shelf storage
+
+        //                 books[shelfAdd.value].push(document.getElementById("result").innerText);
+        //                 localStorage.setItem("savedShelves", JSON.stringify(books));
+        //             }
+        //         }
+
+
+        //         if (shelfAdd.value == "CreateShelf") {
+        //             const newShelfName = prompt("Please enter the new shelf name: ", "Mystery");
+        //             if (newShelfName != null || newShelfName != "") {
+        //                 //TO DO: add shelf to storage
+        //                 alert("Successfully created " + newShelfName + " shelf!");
+        //                 books[newShelfName] = [];
+        //             }
+        //             const option6 = document.createElement("option");
+        //             option6.value = newShelfName;
+        //             option6.innerHTML = newShelfName;
+        //             shelfAdd.appendChild(option6);
+        //         }
+
+        //     });
+
+        // }
 
         addShelfButtons();
 
