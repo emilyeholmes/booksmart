@@ -361,7 +361,7 @@
 
                                 // Create the alert element
                                 const alertDiv = document.createElement("div");
-                                alertDiv.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+                                alertDiv.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
                                 alertDiv.setAttribute("role", "alert");
                                 alertDiv.innerHTML = "Sorry, " + newShelfName + " already exists! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
 
@@ -416,7 +416,7 @@
                         options5.addEventListener("click", () => {
                             // Create the alert element
                             const alertDiv = document.createElement("div");
-                            alertDiv.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+                            alertDiv.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
                             alertDiv.setAttribute("role", "alert");
                             alertDiv.innerHTML = "Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + newShelfName + " shelf! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
 
@@ -437,7 +437,7 @@
                         if (currShelf.includes(document.getElementById("book-title").innerHTML)) {
                             // Create the alert element
                             const alertDiv = document.createElement("div");
-                            alertDiv.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+                            alertDiv.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
                             alertDiv.setAttribute("role", "alert");
                             alertDiv.innerHTML = "Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + dropdownOptions[i].value + " shelf! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
 
