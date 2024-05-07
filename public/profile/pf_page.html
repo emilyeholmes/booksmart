@@ -185,6 +185,8 @@ main {
             <input type="submit" value="Submit" id="submit">
             <br>
             <input type="submit" value="Log Out" id="logout">
+
+            <input type="submit" value="Reset Data" id="cleardata">
             
             
         </div>
@@ -226,6 +228,8 @@ main {
                 var bookName = currShelf[i];
                 shelfSection.innerHTML += '<p>' + bookName + '</p>';
                 shelfSection.innerHTML += '<img src = ' + images[bookName] + ' alt = None' + '>';
+                shelfSection.innerHTML += '<br>';
+                shelfSection.innerHTML += '<br>';
             }
             shelfSection.innerHTML += '<br>';
             shelfSection.innerHTML += '<br>';
@@ -286,6 +290,26 @@ main {
         localStorage.removeItem("loggedIn");
         window.location.replace("../profile/login_page.html");   
       });
+
+
+      const cleardataButton = document.getElementById("cleardata");
+      cleardataButton.addEventListener("click", () => {
+        localStorage.setItem("userData", "");
+        document.getElementById("recs").innerText = "";
+
+
+        var retrievedShelves = JSON.parse(localStorage.getItem("Shelves"));
+        var shelfSection = document.getElementById("savedShelves");
+        for (let i = 0; i < retrievedShelves.length; i++) {
+            var currShelf = JSON.parse(localStorage.getItem(retrievedShelves[i]));
+            localStorage.setItem(retrievedShelves[i], JSON.stringify([]));
+        }
+
+        location.reload();
+      });
+
+
+
         
     </script>
 

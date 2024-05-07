@@ -92,6 +92,18 @@
             width: auto; /* Adjust as needed */
             height: auto; /* Adjust as needed */
         }
+
+        .dropdown-section {
+            background-color: whitesmoke;
+            border: 2px solid #70566D;
+            padding: 10px 18px;
+            padding-bottom: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            text-align: center;
+            color: black;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -257,6 +269,8 @@
                     bookButton.style.padding = "10px";
                     bookButton.style.backgroundColor = "#70566d";
                     li.appendChild(bookButton);
+                    const shelfButton = document.querySelector(".dropdown-section");
+                    shelfButton.style.visibility = "hidden";
                     //add event handler
                     bookButton.addEventListener("click", () => {
                         displayInfo(tempTitle);
@@ -291,6 +305,7 @@
 
             //NEW DROPDOWN
             const shelfButton = document.querySelector(".dropdown-section");
+            shelfButton.style.visibility = "visible";
 
             const addToShelf = document.createElement("a");
             addToShelf.className = "nav-link dropdown-toggle";
