@@ -4,7 +4,7 @@ BookSmart is your one stop shop to getting personalized book recommendations (ta
 
 This repository was built off other projects created so far in this class so the instructions for building and running are very similar. 
 
-# Building and Running BookSmart
+## Building and Running BookSmart
 Please start by cloning this repository.
 
 Then, make sure you have recent versions of `node` and `npm` installed (definitely at least version 12 of Node).
@@ -44,7 +44,7 @@ node server.js
 
 Navigate to [http://localhost:8000](http://localhost:8000) in your Web browser and voila! You should have BookSmart running.
 
-# ACCOUNT DETAILS
+## ACCOUNT DETAILS
 Our application features a login page where you must sign in to use some of our features. The information is also at the top of the README but in case it was missed:
 Username: amateur
 Password: aces
