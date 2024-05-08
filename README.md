@@ -2,6 +2,8 @@
 
 BookSmart is your one stop shop to getting personalized book recommendations (tailored to just you!), finding out what books are trending and what people are reading, and discussing in depth about the books you’ve read. To that end, our application features a recommendations page (where you can train the AI model based on your likes and dislikes by clicking on the hearts), a personalized profile (Username: amateur, Password: aces) where you can specify your preferences and add/save books to shelves, a discussions page to talk about books, and book search where you can find your favorite books and add them to shelves. 
 
+![Screenshot 2024-05-08 at 4 39 17 PM](https://github.com/emilyeholmes/booksmart/assets/41202975/b2ac54f9-3f8d-41dd-9896-7f8411b2a4ee)
+
 This repository was built off other projects created so far in this class so the instructions for building and running are very similar. 
 
 ## Building and Running BookSmart
