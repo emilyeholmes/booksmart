@@ -232,9 +232,15 @@
         localStorage.setItem("login", "amateur");
         localStorage.setItem("password", "aces");
         
-        localStorage.setItem("Romance", JSON.stringify([]));
-        localStorage.setItem("Fantasy", JSON.stringify([]));
-        localStorage.setItem("Cry Worthy", JSON.stringify([]));
+        if (localStorage.getItem("Romance") == null) {
+            localStorage.setItem("Romance", JSON.stringify([]));
+        }
+        if (localStorage.getItem("Fantasy") == null) {
+            localStorage.setItem("Fantasy", JSON.stringify([]));
+        }
+        if (localStorage.getItem("Cry Worthy") == null) {
+            localStorage.setItem("Cry Worthy", JSON.stringify([]));
+        }
 
         function getBookInfo(name) {
             var title = "Default Title";
