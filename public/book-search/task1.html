@@ -92,6 +92,18 @@
             width: auto; /* Adjust as needed */
             height: auto; /* Adjust as needed */
         }
+
+        .dropdown-section {
+            background-color: whitesmoke;
+            border: 2px solid #70566D;
+            padding: 10px 18px;
+            padding-bottom: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            text-align: center;
+            color: black;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -257,6 +269,8 @@
                     bookButton.style.padding = "10px";
                     bookButton.style.backgroundColor = "#70566d";
                     li.appendChild(bookButton);
+                    const shelfButton = document.querySelector(".dropdown-section");
+                    shelfButton.style.visibility = "hidden";
                     //add event handler
                     bookButton.addEventListener("click", () => {
                         displayInfo(tempTitle);
@@ -291,6 +305,7 @@
 
             //NEW DROPDOWN
             const shelfButton = document.querySelector(".dropdown-section");
+            shelfButton.style.visibility = "visible";
 
             const addToShelf = document.createElement("a");
             addToShelf.className = "nav-link dropdown-toggle";
@@ -342,11 +357,43 @@
                         if (newShelfName != null && newShelfName != "" ) {
                             var shelfList = JSON.parse(localStorage.getItem("Shelves"));
                             if (shelfList.includes(newShelfName)) {
-                                alert("Sorry, " + newShelfName + " already exists!");
+                                //alert("Sorry, " + newShelfName + " already exists!");
+
+                                // Create the alert element
+                                const alertDiv = document.createElement("div");
+                                alertDiv.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
+                                alertDiv.setAttribute("role", "alert");
+                                alertDiv.innerHTML = "Sorry, " + newShelfName + " already exists! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+
+                                // Set the position of the alert
+                                alertDiv.style.position = "fixed";
+                                alertDiv.style.top = "100px";
+                                alertDiv.style.right = "20px";
+                                alertDiv.style.zIndex = "9999"; // Ensure the alert appears above other elements
+
+                                // Append the alert to the body
+                                document.body.appendChild(alertDiv);
                             }
                             else {
                                  //TO DO: add shelf to storage
-                                alert("Successfully created and added to " + newShelfName + " shelf!");
+                                //alert("Successfully created and added to " + newShelfName + " shelf!");
+
+                                // Create the alert element
+                                const alertDiv = document.createElement("div");
+                                alertDiv.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+                                alertDiv.setAttribute("role", "alert");
+                                alertDiv.innerHTML = "Successfully created and added to " + newShelfName + " shelf! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+
+                                // Set the position of the alert
+                                alertDiv.style.position = "fixed";
+                                alertDiv.style.top = "100px";
+                                alertDiv.style.right = "20px";
+                                alertDiv.style.zIndex = "9999"; // Ensure the alert appears above other elements
+
+                                // Append the alert to the body
+                                document.body.appendChild(alertDiv);
+
+
                                 localStorage.setItem(newShelfName, JSON.stringify([]));
                                 var shelf = JSON.parse(localStorage.getItem(newShelfName));
                                 shelf.push(document.getElementById("book-title").innerHTML);
@@ -367,18 +414,61 @@
                         options.appendChild(options5);
                         shelfButton.appendChild(options);
                         options5.addEventListener("click", () => {
-                            alert("Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + newShelfName + " shelf!");
+                            // Create the alert element
+                            const alertDiv = document.createElement("div");
+                            alertDiv.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
+                            alertDiv.setAttribute("role", "alert");
+                            alertDiv.innerHTML = "Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + newShelfName + " shelf! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+
+                            // Set the position of the alert
+                            alertDiv.style.position = "fixed";
+                            alertDiv.style.top = "100px";
+                            alertDiv.style.right = "20px";
+                            alertDiv.style.zIndex = "9999"; // Ensure the alert appears above other elements
+
+                            // Append the alert to the body
+                            document.body.appendChild(alertDiv);
+                            //alert("Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + newShelfName + " shelf!");
                         })
                     }
                     else {
                         console.log("here1");
                         var currShelf = JSON.parse(localStorage.getItem(dropdownOptions[i].value));
                         if (currShelf.includes(document.getElementById("book-title").innerHTML)) {
-                            alert("Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + dropdownOptions[i].value + " shelf!");
+                            // Create the alert element
+                            const alertDiv = document.createElement("div");
+                            alertDiv.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
+                            alertDiv.setAttribute("role", "alert");
+                            alertDiv.innerHTML = "Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + dropdownOptions[i].value + " shelf! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+
+                            // Set the position of the alert
+                            alertDiv.style.position = "fixed";
+                            alertDiv.style.top = "100px";
+                            alertDiv.style.right = "20px";
+                            alertDiv.style.zIndex = "9999"; // Ensure the alert appears above other elements
+
+                            // Append the alert to the body
+                            document.body.appendChild(alertDiv);
+
+                            //alert("Sorry, " + document.getElementById("book-title").innerHTML + " is already in the " + dropdownOptions[i].value + " shelf!");
                         }
                         else {
-                            console.log("here1");
-                            alert("Successfully added to " + dropdownOptions[i].value + " shelf!");
+                            // Create the alert element
+                            const alertDiv = document.createElement("div");
+                            alertDiv.classList.add("alert", "alert-success", "alert-dismissible", "fade", "show");
+                            alertDiv.setAttribute("role", "alert");
+                            alertDiv.innerHTML = "Successfully added to " + dropdownOptions[i].value + " shelf! <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+
+                            // Set the position of the alert
+                            alertDiv.style.position = "fixed";
+                            alertDiv.style.top = "100px";
+                            alertDiv.style.right = "20px";
+                            alertDiv.style.zIndex = "9999"; // Ensure the alert appears above other elements
+
+                            // Append the alert to the body
+                            document.body.appendChild(alertDiv);
+
+                            //alert("Successfully added to " + dropdownOptions[i].value + " shelf!");
                             //books[dropdownOptions[i].value].push(document.getElementById("book-title").innerHTML);
                             var currShelf = JSON.parse(localStorage.getItem(dropdownOptions[i].value));
                             currShelf.push(document.getElementById("book-title").innerHTML);
@@ -428,14 +518,14 @@
 
 
 
-        //PROFILE FUNCTIONALITY
+
+      //PROFILE FUNCTIONALITY
 
       const loginButton = document.querySelector(".btn-group");
-      console.log(loginButton);
+      
       loginButton.addEventListener("click", () => {
-        if (localStorage.getItem("loggedIn")) {
+        if (JSON.parse(localStorage.getItem("loggedIn"))) {
           window.location.replace("../profile/pf_page.html"); 
-          //localStorage.setItem("loggedIn", true);
         }
         else {
           window.location.replace("../profile/login_page.html"); 
@@ -447,10 +537,10 @@
 
 <script>
     // Check if the page is being loaded for the first time or being refreshed
-    if (performance.navigation.type === 1) {
-        // Set the loggedIn item in localStorage to false
-        localStorage.removeItem("loggedIn");
-    }
+    // if (performance.navigation.type === 1) {
+    //     // Set the loggedIn item in localStorage to false
+    //     localStorage.removeItem("loggedIn");
+    // }
 </script>
 
 

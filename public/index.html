@@ -605,16 +605,22 @@
       const loginButton = document.querySelector(".btn-group");
       
       loginButton.addEventListener("click", () => {
-        if (localStorage.getItem("loggedIn")) {
+        console.log(localStorage.getItem("loggedIn"));
+        if (JSON.parse(localStorage.getItem("loggedIn"))) {
           window.location.replace("../profile/pf_page.html"); 
-          //localStorage.setItem("loggedIn", true);
         }
         else {
           window.location.replace("../profile/login_page.html"); 
         }
       });
 
+<<<<<<< HEAD
       localStorage.setItem("Shelves", JSON.stringify(["Romance", "Fantasy", "Cry Worthy"]));
+=======
+      //localStorage.setItem("Shelves", JSON.stringify(["Romance", "Fantasy", "Cry Worthy"]));
+       
+    
+>>>>>>> f364da2b13ae3df70bbc2ed868862185998f0e41
 
       </script>
       

@@ -41,6 +41,13 @@
             box-sizing: border-box;
         }
 
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
         input[type="submit"] {
             padding: 10px 20px;
             margin: 10px;
@@ -165,7 +172,7 @@
         <input type="text" id="username"/></center>
         <br>
         <center><label for="password">Password</label>
-        <input type="text" id="password"/></center>
+        <input type="password" id="password"/></center>
         <br>
         <center><input type="submit" value="Log in" id="submit"></center>
     </main>
@@ -185,16 +192,9 @@
             const user = document.getElementById("username").value;
             const pass = document.getElementById("password").value;
 
-            console.log(user);
-            console.log(pass);
-
-            console.log(username);
-            console.log(password);
-            console.log(localStorage);
-
             if (username == user && password == pass) {
                 window.location.replace("pf_page.html");
-                localStorage.setItem("loggedIn", true);
+                localStorage.setItem("loggedIn", "true");
             }
 
             const notif = document.getElementById("notification");
@@ -217,15 +217,15 @@
     </script>
 
 <script>
-    localStorage.setItem("login", "amateur");
-    localStorage.setItem("username", "amateur");
-    localStorage.setItem("password", "aces");
-    // Check if the page is being loaded for the first time or being refreshed
-    if (performance.navigation.type === 1) {
-        // Set the loggedIn item in localStorage to false
-        localStorage.removeItem("loggedIn");
-    }
-</script>
+    // localStorage.setItem("login", "amateur");
+    // localStorage.setItem("username", "amateur");
+    // localStorage.setItem("password", "aces");
+        // Check if the page is being loaded for the first time or being refreshed
+        // if (performance.navigation.type === 1) {
+        //     // Set the loggedIn item in localStorage to false
+        //     localStorage.removeItem("loggedIn");
+        // }
+     </script>
 
 
 </body>

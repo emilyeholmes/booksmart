@@ -179,12 +179,14 @@ main {
             <br>
             <br>
 
-            <label for="name" id="related">Tell us about what kind of books you like! This can be as little as a few words or a few sentences and will help us better tailor recommendations to you.</label>
+            <label for="name" id="related">Tell us about what kind of books you like! This can be as little as a few words or a few sentences (BUT MORE SPECIFIC IS BETTER) and will help us best tailor recommendations to you. </label>
             
             <input type="text" id="recs"/>
             <input type="submit" value="Submit" id="submit">
             <br>
             <input type="submit" value="Log Out" id="logout">
+
+            <input type="submit" value="Reset Data" id="cleardata">
             
             
         </div>
@@ -226,6 +228,8 @@ main {
                 var bookName = currShelf[i];
                 shelfSection.innerHTML += '<p>' + bookName + '</p>';
                 shelfSection.innerHTML += '<img src = ' + images[bookName] + ' alt = None' + '>';
+                shelfSection.innerHTML += '<br>';
+                shelfSection.innerHTML += '<br>';
             }
             shelfSection.innerHTML += '<br>';
             shelfSection.innerHTML += '<br>';
@@ -238,6 +242,7 @@ main {
         submitButton.style.backgroundColor = "#70566D";
         submitButton.style.color = "#ffffff";
         submitButton.addEventListener("click", () => {
+            console.log(localStorage.getItem("loggedIn"));
             const userData = document.getElementById("recs");
             localStorage.setItem("userData", userData.value);
 
@@ -269,11 +274,10 @@ main {
         //PROFILE FUNCTIONALITY
 
       const loginButton = document.querySelector(".btn-group");
-      console.log(loginButton);
+      
       loginButton.addEventListener("click", () => {
-        if (localStorage.getItem("loggedIn")) {
+        if (JSON.parse(localStorage.getItem("loggedIn"))) {
           window.location.replace("../profile/pf_page.html"); 
-          //localStorage.setItem("loggedIn", true);
         }
         else {
           window.location.replace("../profile/login_page.html"); 
@@ -283,19 +287,38 @@ main {
 
       const logoutButton = document.getElementById("logout");
       logoutButton.addEventListener("click", () => {
-        localStorage.setItem("loggedIn", true);
-        //console.log(localStorage.getItem("loggedIn"));
+        localStorage.removeItem("loggedIn");
         window.location.replace("../profile/login_page.html");   
-      })
+      });
+
+
+      const cleardataButton = document.getElementById("cleardata");
+      cleardataButton.addEventListener("click", () => {
+        localStorage.setItem("userData", "");
+        document.getElementById("recs").innerText = "";
+
+
+        var retrievedShelves = JSON.parse(localStorage.getItem("Shelves"));
+        var shelfSection = document.getElementById("savedShelves");
+        for (let i = 0; i < retrievedShelves.length; i++) {
+            var currShelf = JSON.parse(localStorage.getItem(retrievedShelves[i]));
+            localStorage.setItem(retrievedShelves[i], JSON.stringify([]));
+        }
+
+        location.reload();
+      });
+
+
+
         
     </script>
 
 <script>
     // Check if the page is being loaded for the first time or being refreshed
-    if (performance.navigation.type === 1) {
-        // Set the loggedIn item in localStorage to false
-        localStorage.removeItem("loggedIn");
-    }
+    // if (performance.navigation.type === 1) {
+    //     // Set the loggedIn item in localStorage to false
+    //     localStorage.removeItem("loggedIn");
+    // }
 </script>
 
 
