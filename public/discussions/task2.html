@@ -245,7 +245,7 @@
               </div>
             </div> -->
           </div>
-  
+
           <div>
             <ul class="nav nav-tabs">
               <li class="active settingshead"><a href="#first" data-toggle="tab">Discussions</a></li>
@@ -287,7 +287,7 @@
                     <div class="row align-items-center">
                       <div class="col-md-8 mb-3 mb-sm-0">
                         <h5>
-                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                           <a href="#" class="text-primary">When will <i>Winds of Winter</i> be published?</a>
                           </button>
                         </h5>
@@ -316,7 +316,7 @@
                     <div class="row align-items-center">
                       <div class="col-md-8 mb-3 mb-sm-0">
                         <h5>
-                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseOne">
+                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                           <a href="#" class="text-primary">Thoughts on the TBOSAS movie adaptation?</a>
                           </button>
                         </h5>
@@ -344,11 +344,40 @@
             </div>
   
             <div class="tab-pane" id="second">
-              <div class="reviews">
+            <div class="reviews">
+            <button type="button" id="create-review" class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-3 bg-op-6" data-toggle="modal" data-target="#reviewModal" data-whatever="@mdo">Create Review</button>
+            <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">New Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Title</label>
+                        <input type="text" class="form-control" id="review-title-name">
+                      </div>
+                      <div class="form-group">
+                        <label for="message-text" class="col-form-label">Content</label>
+                        <textarea class="form-control" id="review-message-text"></textarea>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" id="review-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-review">Post</button>
+                  </div>
+                </div>
+              </div>
+            </div>
                 
-                <div class="container">
+                <div class="container" id="review-column">
                   <div class="row">
-                    <div class="col-md-8 mx-auto">
+                    <div class="col-md-8 mb-3 mb-sm-0">
                       <div class="book-rating">
                         <h2 class="book-title">The Secret History</h2>
                         <p>Rating: <span class="rating-stars">★★★★☆</span> (4.5/5)</p>
@@ -391,7 +420,7 @@
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="post-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal" id="submit-post">Post</button>
                   </div>
                 </div>
@@ -445,7 +474,11 @@
         <div class="row align-items-center">
           <div class="col-md-8 mb-3 mb-sm-0">
             <h5>
-              <a href="#" class="text-primary" id="post-title">Template</a>
+              <h5>
+                <button id="expand-btn" class="btn btn-link" data-toggle="collapse" aria-expanded="false">
+                <a href="#" id="post-title" class="text-primary">Template</a>
+                </button>
+              </h5>
             </h5>
             <p class="text-sm" id="description"><span class="op-6">Posted</span> <a class="text-black" href="#">2 seconds</a> <span class="op-6">ago by</span> <a class="text-black" href="#">bHartmann</a></p>
           </div>
@@ -456,20 +489,39 @@
               <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">0 Views</span> </div>
             </div>
           </div>
+          <div id="disc-content" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div id="disc-card-body" class="card-body">
+            Discussion Post Content
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <!--End of template-->
+
+
+
+    <!--Template for Review-->
+    <div class="hidden">
+      <div class="col-md-8 mb-3 mb-sm-0" id="review-template">
+        <div class="book-rating">
+          <h2 class="book-title" id="review-book-title">Book Title</h2>
+          <p>Rating: <span class="rating-stars">★★★★☆</span> (3/5)</p>
+          <p id="review-text"></p>
+          <p class="reviewer-name">Reviewed by: AmateurAce</p> <!-- Added reviewer's name -->
+        </div>
+      </div>
+    </div>
+    <!--End of Review Template-->
   
   </body>
 </main>
 
-
-
-
     <!-- When the "create post" button is pressed, open a post template and when the post button is pressed, add the specific div type to the container? -->
     <script>
 
-      var postNum = 0;
+      let postNum = 0;
+
 
       //Search button in the navbar
       let searchButton1 = document.getElementById("book-search-1");
@@ -481,27 +533,25 @@
        );
 
         function addPost() {
-          var postNum = postNum + 1;
+          postNum = postNum + 1;
+          var postType = 'collapse' + String(postNum);
         // First, we need to clone the template.
           const template = document.getElementById("post-template");
-          const clone = template.cloneNode(true);
+          var clone = template.cloneNode(true);
           var title = document.getElementById("title-name").value;
           var message = document.getElementById("message-text").value;
-
           clone.querySelectorAll('[id="post-title"]')[0].innerHTML = title;
-          // const select = clone.querySelector('#btn btn-link');
-          // select.setAttribute('data-target', 'collapse' + postNum);
-          // const selectPostMessage = clone.querySelector('#class');
-          // selectPostMessage.id = 'collapse' + postNum;
+          clone.querySelectorAll('[id="disc-card-body"]')[0].innerHTML = message;
 
-    // select.id = "countryToVisit_" + countriesCounter;
-          // clone.querySelector('#btn btn-link').setAttribute('data-target', 'collapse' + postNum);
-          // clone.querySelector('#class').setAttribute('id', 'collapse' + postNum);
+          // clone.querySelectorAll('[id="expand-btn"]')[0].setAttribute('data-target', '#' + postType);
+          // clone.querySelectorAll('[id="expand-btn"]')[0].setAttribute('aria-controls', postType);
+          // clone.querySelectorAll('[id="disc-content"]')[0].setAttribute('id', postType);
+        
+
+          // <!--Attributes to set within the divs to create a collapsible post-->
           // data-target="#collapseOne"
           // id="collapseOne"
-
-
-
+          // aria-controls = "collapseOne"
 
           // clone.querySelectorAll('[id="description"]')[0].innerHTML = 
           // console.log(text.substring(0, 50) + "...");
@@ -510,30 +560,35 @@
 
         // clone.id = "";
 
-        // // Then, we need to fill in the details.
-        // const imageElement = clone.querySelector("[data-template-id=image]");
-        // if (image !== undefined) {
-        //   imageElement.src = image;
-        // }
-        // imageElement.alt = `Image of ${title}`;
-        // clone.querySelector("[data-template-id=title]").textContent = title;
+       
 
-        // // Then, we need to set up the event listener for the delete button.
-        // const deleteButton = clone.querySelector(
-        //   "[data-template-id=delete-button]"
-        // );
-        // deleteButton.addEventListener("click", removeShoppingListItem);
-
-        // Finally, we need to add the new card to the list.
-        const list = document.getElementById("first");
+        var list = document.getElementById("first");
         list.appendChild(clone);
         document.getElementById("title-name").value = "";
         document.getElementById("message-text").value = "";
 
-        return clone;
+        // return clone;
     }
 
-    // This function will remove an item from the shopping list.
+
+    function addReview() {
+      
+      const template = document.getElementById("review-template");
+      var clone = template.cloneNode(true);
+      var title = document.getElementById("review-title-name").value;
+      var message = document.getElementById("review-message-text").value;
+      clone.querySelectorAll('[id="review-book-title"]')[0].innerHTML = title;
+      clone.querySelectorAll('[id="review-text"]')[0].innerHTML = message;
+
+      var list = document.getElementById("review-column");
+      list.appendChild(clone);
+
+      document.getElementById("review-title-name").value = "";
+      document.getElementById("review-message-text").value = "";
+        
+
+    }
+
     function removePost(event) {
       const card = event.target.closest(".card");
       card.remove();
@@ -551,6 +606,31 @@
       
     });
 
+    const reviewBtn = document.getElementById('submit-review');
+    reviewBtn.addEventListener('click', () => {
+      addReview();
+      //TODO: clear out the inputs within the modal
+      
+    });
+
+    const closeReviewBtn = document.getElementById('review-close');
+    closeReviewBtn.addEventListener('click', () => {
+      document.getElementById("review-title-name").value = "";
+      document.getElementById("review-message-text").value = "";
+        
+      //TODO: clear out the inputs within the modal
+      
+    });
+
+    const closeDiscPost = document.getElementById('post-close');
+    closeDiscPost.addEventListener('click', () => {
+      document.getElementById("title-name").value = "";
+      document.getElementById("message-text").value = "";
+
+        
+      //TODO: clear out the inputs within the modal
+      
+    });
 
 
      //PROFILE FUNCTIONALITY
